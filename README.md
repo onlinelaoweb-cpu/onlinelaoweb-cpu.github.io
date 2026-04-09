@@ -76,6 +76,6 @@ Noida aur Delhi NCR ke **restaurants, clinics, coaching centres, salons** aur lo
 <img src="https://img.shields.io/badge/SSL-Secured_🔒-138808?style=flat-square"/>
 <img src="https://img.shields.io/badge/Mobile-First_📱-0D1F3C?style=flat-square"/>
 
-*© 2025 OnlineLao — Apna Business Online Lao!*
+*© 2026 OnlineLao — Apna Business Online Lao!*
 
 </div>
