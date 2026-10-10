@@ -208,16 +208,16 @@ kbd{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--bg-su
 .chips-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--fg-3);margin-bottom:5px}
 .chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
 .chip{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);color:var(--fg-2);cursor:pointer;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
-.chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.chip:hover,.chip:active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
 .chip .lv{font-size:8px;padding:1px 4px}
 
 /* Input */
 .input-zone{padding:12px 16px;border-top:1px solid var(--border);background:var(--bg-card);flex-shrink:0}
 .input-row{display:flex;gap:8px;align-items:flex-end}
-.chat-in{flex:1;padding:9px 12px;font-size:13.5px;font-family:'Inter',sans-serif;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg-input);color:var(--fg);resize:none;line-height:1.5;outline:none;transition:border-color .15s;min-height:42px;max-height:100px}
+.chat-in{flex:1;padding:9px 12px;font-size:13.5px;font-family:'Inter',sans-serif;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg-input);color:var(--fg);resize:none;line-height:1.5;outline:none;transition:border-color .15s;min-height:44px;max-height:100px;-webkit-appearance:none}
 .chat-in:focus{border-color:var(--accent)}
 .chat-in::placeholder{color:var(--fg-3)}
-.send{width:42px;height:42px;border-radius:var(--r-sm);border:none;background:var(--accent);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .15s;flex-shrink:0}
+.send{width:44px;height:44px;border-radius:var(--r-sm);border:none;background:var(--accent);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .15s;flex-shrink:0;touch-action:manipulation}
 .send:hover{opacity:.85}.send:disabled{opacity:.4;cursor:not-allowed}
 .send svg{width:17px;height:17px;fill:white}
 .hint{font-size:10px;color:var(--fg-3);text-align:center;margin-top:6px}
@@ -227,8 +227,74 @@ kbd{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--bg-su
 .welcome h2{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px}
 .welcome p{font-size:12.5px;opacity:.88;line-height:1.55}
 
-@media(max-width:680px){.sidebar{display:none}.built-by,.nav-sub,.level-legend{display:none}}
-@media(max-width:480px){.chips-wrap{padding:6px 10px 0}.messages{padding:10px}.input-zone{padding:9px 10px}}
+/* Mobile sidebar drawer */
+.menu-btn{display:none;width:34px;height:34px;border-radius:var(--r-xs);border:1px solid var(--border);background:var(--bg-surface);color:var(--fg-2);cursor:pointer;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;touch-action:manipulation}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40;backdrop-filter:blur(2px)}
+.overlay.open{display:block}
+
+/* ── TABLET (≤900px) ── */
+@media(max-width:900px){
+  .built-by{display:none}
+  .sidebar{width:240px}
+}
+
+/* ── MOBILE/PHABLET (≤680px) ── */
+@media(max-width:680px){
+  /* Navbar */
+  .navbar{padding:0 12px;height:52px}
+  .nav-sub,.level-legend,.built-by{display:none}
+  .menu-btn{display:flex}
+
+  /* Sidebar becomes a slide-in drawer */
+  .sidebar{
+    position:fixed;top:52px;left:0;bottom:0;z-index:50;
+    width:280px;max-width:85vw;
+    transform:translateX(-100%);
+    transition:transform .25s ease;
+    box-shadow:4px 0 24px rgba(0,0,0,.18);
+  }
+  .sidebar.open{transform:translateX(0)}
+
+  /* Layout full width */
+  .layout{height:calc(100vh - 52px)}
+  .chat-area{width:100%}
+
+  /* Chips: horizontal scroll on mobile */
+  .chips-wrap{padding:6px 12px 0;overflow:hidden}
+  .chips{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  .chip{font-size:12px;padding:6px 12px;min-height:34px;touch-action:manipulation}
+  .chip .lv{font-size:9px}
+
+  /* Messages */
+  .messages{padding:12px;gap:10px}
+  .msg{max-width:96%}
+  .bubble{font-size:13px;padding:9px 11px}
+  .ai-steps li{font-size:12.5px}
+
+  /* Input zone */
+  .input-zone{padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+  .chat-in{font-size:16px;min-height:44px} /* 16px prevents iOS zoom */
+  .send{width:44px;height:44px}
+  .hint{display:none}
+
+  /* Chat header */
+  .chat-top{padding:9px 12px}
+  .chat-top h3{font-size:12px}
+  .chat-top p{display:none}
+
+  /* KPI / ticket cards */
+  .kpi-v{font-size:17px}
+  .tkt-card{gap:4px}
+}
+
+/* ── SMALL PHONES (≤380px) ── */
+@media(max-width:380px){
+  .nav-title{font-size:12px}
+  .status-pill{display:none}
+  .chips-label{display:none}
+  .bubble{font-size:12.5px}
+}
 </style>
 </head>
 <body>
@@ -246,9 +312,11 @@ kbd{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--bg-su
   <div class="nav-right">
     <div class="status-pill"><span class="dot"></span>AI Online</div>
     <button class="theme-btn" onclick="toggleTheme()">🌓</button>
+    <button class="menu-btn" onclick="toggleSidebar()" aria-label="Menu">☰</button>
     <div class="built-by">Built by <b>Prabhash Ranjan</b></div>
   </div>
 </nav>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
 
 <div class="layout">
   <!-- SIDEBAR -->
@@ -854,11 +922,21 @@ function addSidebar(m, id) {
   el.innerHTML = `<div class="t-top"><span class="t-id">${id}</span><span class="lv lv-${m.level}">${m.level}</span><span class="pb ${pbMap[m.priority]||'pb-med'}">${m.priority}</span></div><div class="t-title">${m.title}</div><div class="t-meta"><span class="cb cb-${m.cat}">${m.catLabel}</span><span style="font-size:10px;color:var(--fg-3)">${now()}</span></div>`;
   list.insertBefore(el, list.firstChild);
 }
-function selectTicket(el) { document.querySelectorAll('.t-item').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
+function selectTicket(el) { document.querySelectorAll('.t-item').forEach(x=>x.classList.remove('active')); el.classList.add('active'); if(window.innerWidth<=680)closeSidebar(); }
 function scroll() { const m=document.getElementById('messages'); m.scrollTop=m.scrollHeight; }
 function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} }
 function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,100)+'px'; }
 function sendChip(el) { document.getElementById('chatInput').value=el.textContent.replace(/L[123]/,'').trim(); send(); }
+function toggleSidebar() {
+  const sb = document.querySelector('.sidebar');
+  const ov = document.getElementById('overlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('open');
+}
+function closeSidebar() {
+  document.querySelector('.sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
 function toggleTheme() {
   const r=document.documentElement;
   r.setAttribute('data-theme',r.getAttribute('data-theme')==='dark'?'light':'dark');
