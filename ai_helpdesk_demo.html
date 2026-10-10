@@ -7,395 +7,232 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* ── Color & Type Tokens ───────────────────────────────────── */
+/* ── Tokens ── */
 :root {
-  --bg:          #EEF2FF;
-  --bg-card:     #FFFFFF;
-  --bg-surface:  #F5F7FF;
-  --bg-chat:     #F0F4FF;
-  --bg-input:    #FFFFFF;
-  --fg:          #0F172A;
-  --fg-2:        #334155;
-  --fg-3:        #64748B;
-  --border:      rgba(99,102,241,0.14);
-  --accent:      #4F46E5;
-  --accent-dim:  #EEF2FF;
-  --user-bg:     #4F46E5;
-  --ai-bg:       #FFFFFF;
-  --p-crit:      #DC2626; --p-crit-bg: #FEF2F2;
-  --p-high:      #EA580C; --p-high-bg: #FFF7ED;
-  --p-med:       #D97706; --p-med-bg:  #FFFBEB;
-  --p-low:       #059669; --p-low-bg:  #ECFDF5;
-  --c-account:   #7C3AED; --c-account-bg: #F5F3FF;
-  --c-network:   #0369A1; --c-network-bg: #EFF6FF;
-  --c-software:  #0F766E; --c-software-bg:#F0FDFA;
-  --c-hardware:  #B45309; --c-hardware-bg:#FFFBEB;
-  --c-security:  #BE185D; --c-security-bg:#FDF2F8;
-  --c-general:   #64748B; --c-general-bg: #F8FAFC;
-  --shadow:      0 1px 3px rgba(79,70,229,0.07),0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md:   0 4px 16px rgba(79,70,229,0.1);
-  --r: 12px; --r-sm: 8px; --r-xs: 6px;
+  --bg:#EEF2FF; --bg-card:#FFFFFF; --bg-surface:#F5F7FF; --bg-chat:#F0F4FF; --bg-input:#FFFFFF;
+  --fg:#0F172A; --fg-2:#334155; --fg-3:#64748B;
+  --border:rgba(99,102,241,0.14);
+  --accent:#4F46E5; --accent-dim:#EEF2FF;
+  --user-bg:#4F46E5; --ai-bg:#FFFFFF;
+  --p-crit:#DC2626; --p-crit-bg:#FEF2F2;
+  --p-high:#EA580C; --p-high-bg:#FFF7ED;
+  --p-med:#D97706;  --p-med-bg:#FFFBEB;
+  --p-low:#059669;  --p-low-bg:#ECFDF5;
+  --c-account:#7C3AED;   --c-account-bg:#F5F3FF;
+  --c-network:#0369A1;   --c-network-bg:#EFF6FF;
+  --c-software:#0F766E;  --c-software-bg:#F0FDFA;
+  --c-hardware:#B45309;  --c-hardware-bg:#FFFBEB;
+  --c-security:#BE185D;  --c-security-bg:#FDF2F8;
+  --c-infra:#1D4ED8;     --c-infra-bg:#EFF6FF;
+  --c-cloud:#0891B2;     --c-cloud-bg:#ECFEFF;
+  --c-general:#64748B;   --c-general-bg:#F8FAFC;
+  --lv1:#059669; --lv1-bg:#ECFDF5;
+  --lv2:#D97706; --lv2-bg:#FFFBEB;
+  --lv3:#DC2626; --lv3-bg:#FEF2F2;
+  --shadow:0 1px 3px rgba(79,70,229,0.07),0 1px 2px rgba(0,0,0,0.04);
+  --r:12px; --r-sm:8px; --r-xs:6px;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:         #09111F;
-    --bg-card:    #111C30;
-    --bg-surface: #0E1628;
-    --bg-chat:    #0C1524;
-    --bg-input:   #18243A;
-    --fg:         #E2E8F8;
-    --fg-2:       #A0AEC8;
-    --fg-3:       #64748B;
-    --border:     rgba(99,102,241,0.2);
-    --accent:     #818CF8;
-    --accent-dim: #1E1B4B;
-    --user-bg:    #4F46E5;
-    --ai-bg:      #111C30;
-    --p-crit:     #FCA5A5; --p-crit-bg: #1C0A0A;
-    --p-high:     #FB923C; --p-high-bg: #1A0C00;
-    --p-med:      #FCD34D; --p-med-bg:  #1C1000;
-    --p-low:      #34D399; --p-low-bg:  #022C22;
-    --c-account:  #A78BFA; --c-account-bg: #1E1B4B;
-    --c-network:  #38BDF8; --c-network-bg: #0C1A35;
-    --c-software: #2DD4BF; --c-software-bg:#042F2E;
-    --c-hardware: #FCD34D; --c-hardware-bg:#1C1000;
-    --c-security: #F472B6; --c-security-bg:#2D0A1E;
-    --c-general:  #94A3B8; --c-general-bg: #0E1628;
-    --shadow:     0 1px 3px rgba(0,0,0,0.4);
-    --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
-    color-scheme: dark;
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#09111F; --bg-card:#111C30; --bg-surface:#0E1628; --bg-chat:#0C1524; --bg-input:#18243A;
+    --fg:#E2E8F8; --fg-2:#A0AEC8; --fg-3:#64748B;
+    --border:rgba(99,102,241,0.2);
+    --accent:#818CF8; --accent-dim:#1E1B4B;
+    --user-bg:#4F46E5; --ai-bg:#111C30;
+    --p-crit:#FCA5A5; --p-crit-bg:#1C0A0A;
+    --p-high:#FB923C; --p-high-bg:#1A0C00;
+    --p-med:#FCD34D;  --p-med-bg:#1C1000;
+    --p-low:#34D399;  --p-low-bg:#022C22;
+    --c-account:#A78BFA; --c-account-bg:#1E1B4B;
+    --c-network:#38BDF8; --c-network-bg:#0C1A35;
+    --c-software:#2DD4BF; --c-software-bg:#042F2E;
+    --c-hardware:#FCD34D; --c-hardware-bg:#1C1000;
+    --c-security:#F472B6; --c-security-bg:#2D0A1E;
+    --c-infra:#60A5FA;   --c-infra-bg:#0C1A35;
+    --c-cloud:#22D3EE;   --c-cloud-bg:#0C2030;
+    --c-general:#94A3B8; --c-general-bg:#0E1628;
+    --lv1:#34D399; --lv1-bg:#022C22;
+    --lv2:#FCD34D; --lv2-bg:#1C1000;
+    --lv3:#FCA5A5; --lv3-bg:#1C0A0A;
+    --shadow:0 1px 3px rgba(0,0,0,0.4);
+    color-scheme:dark;
   }
 }
-:root[data-theme="dark"] {
-  --bg:         #09111F;
-  --bg-card:    #111C30;
-  --bg-surface: #0E1628;
-  --bg-chat:    #0C1524;
-  --bg-input:   #18243A;
-  --fg:         #E2E8F8;
-  --fg-2:       #A0AEC8;
-  --fg-3:       #64748B;
-  --border:     rgba(99,102,241,0.2);
-  --accent:     #818CF8;
-  --accent-dim: #1E1B4B;
-  --user-bg:    #4F46E5;
-  --ai-bg:      #111C30;
-  --p-crit:     #FCA5A5; --p-crit-bg: #1C0A0A;
-  --p-high:     #FB923C; --p-high-bg: #1A0C00;
-  --p-med:      #FCD34D; --p-med-bg:  #1C1000;
-  --p-low:      #34D399; --p-low-bg:  #022C22;
-  --c-account:  #A78BFA; --c-account-bg: #1E1B4B;
-  --c-network:  #38BDF8; --c-network-bg: #0C1A35;
-  --c-software: #2DD4BF; --c-software-bg:#042F2E;
-  --c-hardware: #FCD34D; --c-hardware-bg:#1C1000;
-  --c-security: #F472B6; --c-security-bg:#2D0A1E;
-  --c-general:  #94A3B8; --c-general-bg: #0E1628;
-  --shadow:     0 1px 3px rgba(0,0,0,0.4);
-  --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
-  color-scheme: dark;
+:root[data-theme="dark"]{
+  --bg:#09111F; --bg-card:#111C30; --bg-surface:#0E1628; --bg-chat:#0C1524; --bg-input:#18243A;
+  --fg:#E2E8F8; --fg-2:#A0AEC8; --fg-3:#64748B;
+  --border:rgba(99,102,241,0.2);
+  --accent:#818CF8; --accent-dim:#1E1B4B;
+  --user-bg:#4F46E5; --ai-bg:#111C30;
+  --p-crit:#FCA5A5; --p-crit-bg:#1C0A0A;
+  --p-high:#FB923C; --p-high-bg:#1A0C00;
+  --p-med:#FCD34D;  --p-med-bg:#1C1000;
+  --p-low:#34D399;  --p-low-bg:#022C22;
+  --c-account:#A78BFA; --c-account-bg:#1E1B4B;
+  --c-network:#38BDF8; --c-network-bg:#0C1A35;
+  --c-software:#2DD4BF; --c-software-bg:#042F2E;
+  --c-hardware:#FCD34D; --c-hardware-bg:#1C1000;
+  --c-security:#F472B6; --c-security-bg:#2D0A1E;
+  --c-infra:#60A5FA;   --c-infra-bg:#0C1A35;
+  --c-cloud:#22D3EE;   --c-cloud-bg:#0C2030;
+  --c-general:#94A3B8; --c-general-bg:#0E1628;
+  --lv1:#34D399; --lv1-bg:#022C22;
+  --lv2:#FCD34D; --lv2-bg:#1C1000;
+  --lv3:#FCA5A5; --lv3-bg:#1C0A0A;
+  --shadow:0 1px 3px rgba(0,0,0,0.4);
+  color-scheme:dark;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--fg);overflow:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 
-html,body{
-  height:100%;font-family:'Inter',system-ui,sans-serif;
-  background:var(--bg);color:var(--fg);overflow:hidden;
-}
-
-/* ── Scrollbar ── */
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
-
-/* ── NAVBAR ── */
-.navbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;height:58px;background:var(--bg-card);
-  border-bottom:1px solid var(--border);box-shadow:var(--shadow);
-  flex-shrink:0;gap:12px;position:relative;z-index:10;
-}
-.nav-brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.nav-logo{
-  width:34px;height:34px;background:var(--accent);
-  border-radius:var(--r-sm);display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;
-}
-.nav-logo svg{width:18px;height:18px;fill:white}
-.nav-title{
-  font-family:'Space Grotesk',sans-serif;font-size:15px;
-  font-weight:700;color:var(--fg);letter-spacing:-0.3px;line-height:1.1;
-}
-.nav-sub{font-size:10px;color:var(--fg-3);letter-spacing:0.5px;text-transform:uppercase}
-.nav-right{display:flex;align-items:center;gap:10px}
-.status-pill{
-  display:flex;align-items:center;gap:6px;padding:4px 10px;
-  background:var(--p-low-bg);border-radius:20px;
-  font-size:11px;font-weight:600;color:var(--p-low);
-}
-.dot{
-  width:7px;height:7px;border-radius:50%;background:var(--p-low);
-  animation:pulse 2s infinite;
-}
+/* NAVBAR */
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:0 18px;height:56px;background:var(--bg-card);border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-shrink:0;gap:10px;z-index:10}
+.nav-brand{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.nav-logo{width:32px;height:32px;background:var(--accent);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-logo svg{width:17px;height:17px;fill:white}
+.nav-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--fg);letter-spacing:-.3px;line-height:1.1}
+.nav-sub{font-size:10px;color:var(--fg-3);letter-spacing:.5px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:9px}
+.status-pill{display:flex;align-items:center;gap:5px;padding:3px 9px;background:var(--p-low-bg);border-radius:20px;font-size:11px;font-weight:600;color:var(--p-low)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--p-low);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
-.theme-btn{
-  width:32px;height:32px;border-radius:var(--r-xs);
-  border:1px solid var(--border);background:var(--bg-surface);
-  color:var(--fg-2);cursor:pointer;display:flex;
-  align-items:center;justify-content:center;font-size:15px;
-  transition:background .15s;
-}
+.theme-btn{width:30px;height:30px;border-radius:var(--r-xs);border:1px solid var(--border);background:var(--bg-surface);color:var(--fg-2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .15s}
 .theme-btn:hover{background:var(--accent-dim);color:var(--accent)}
-.built-by{
-  font-size:11px;color:var(--fg-3);padding:3px 10px;
-  background:var(--bg-surface);border-radius:20px;
-  border:1px solid var(--border);white-space:nowrap;
-}
+.built-by{font-size:11px;color:var(--fg-3);padding:3px 9px;background:var(--bg-surface);border-radius:20px;border:1px solid var(--border);white-space:nowrap}
 .built-by b{color:var(--accent)}
 
-/* ── LAYOUT ── */
-.layout{display:flex;height:calc(100vh - 58px);overflow:hidden}
+/* LAYOUT */
+.layout{display:flex;height:calc(100vh - 56px);overflow:hidden}
 
-/* ── SIDEBAR ── */
-.sidebar{
-  width:270px;flex-shrink:0;background:var(--bg-card);
-  border-right:1px solid var(--border);
-  display:flex;flex-direction:column;overflow:hidden;
-}
-.s-section{padding:14px 14px 10px;border-bottom:1px solid var(--border)}
-.s-label{
-  font-size:10px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.8px;color:var(--fg-3);margin-bottom:10px;
-}
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.kpi{
-  background:var(--bg-surface);border:1px solid var(--border);
-  border-radius:var(--r-sm);padding:9px 11px;
-}
-.kpi-v{
-  font-family:'Space Grotesk',sans-serif;font-size:20px;
-  font-weight:700;color:var(--accent);line-height:1;
-  font-variant-numeric:tabular-nums;
-}
+/* SIDEBAR */
+.sidebar{width:268px;flex-shrink:0;background:var(--bg-card);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.s-sec{padding:12px 13px 10px;border-bottom:1px solid var(--border)}
+.s-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--fg-3);margin-bottom:9px}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.kpi{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:8px 10px}
+.kpi-v{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:700;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
 .kpi-l{font-size:10px;color:var(--fg-3);margin-top:2px;font-weight:500}
 
-.ticket-list{flex:1;overflow-y:auto;padding:10px}
-.tkt-empty{
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;height:100px;gap:6px;
-  color:var(--fg-3);font-size:12px;text-align:center;
-}
-.t-item{
-  padding:9px 11px;border-radius:var(--r-sm);
-  border:1px solid var(--border);background:var(--bg-surface);
-  margin-bottom:6px;cursor:pointer;
-  transition:border-color .15s, background .15s;
-}
+.lvl-row{display:flex;gap:6px;padding:10px 13px;border-bottom:1px solid var(--border)}
+.lv-tile{flex:1;padding:7px 8px;border-radius:var(--r-sm);border:1px solid var(--border);text-align:center}
+.lv-tile .n{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+.lv-tile .t{font-size:9px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;margin-top:1px}
+.lv-tile.l1{background:var(--lv1-bg)}.lv-tile.l1 .n,.lv-tile.l1 .t{color:var(--lv1)}
+.lv-tile.l2{background:var(--lv2-bg)}.lv-tile.l2 .n,.lv-tile.l2 .t{color:var(--lv2)}
+.lv-tile.l3{background:var(--lv3-bg)}.lv-tile.l3 .n,.lv-tile.l3 .t{color:var(--lv3)}
+
+.s-sec.tickets{padding:10px 13px 6px;border-bottom:none;flex-shrink:0}
+.ticket-list{flex:1;overflow-y:auto;padding:0 8px 10px}
+.t-item{padding:8px 10px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--bg-surface);margin-bottom:5px;cursor:pointer;transition:border-color .15s,background .15s}
 .t-item:hover,.t-item.active{border-color:var(--accent);background:var(--accent-dim)}
-.t-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.t-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px;gap:4px}
 .t-id{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;color:var(--accent)}
-.t-title{font-size:12px;font-weight:500;color:var(--fg);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.t-meta{display:flex;gap:5px;align-items:center;margin-top:4px;flex-wrap:wrap}
+.t-title{font-size:12px;font-weight:500;color:var(--fg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t-meta{display:flex;gap:4px;align-items:center;margin-top:4px;flex-wrap:wrap}
 
 /* Badges */
-.pb{
-  font-size:9px;font-weight:700;padding:2px 7px;
-  border-radius:10px;text-transform:uppercase;letter-spacing:.4px;
-}
+.pb{font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;text-transform:uppercase;letter-spacing:.4px}
 .pb-crit{color:var(--p-crit);background:var(--p-crit-bg)}
 .pb-high{color:var(--p-high);background:var(--p-high-bg)}
 .pb-med{color:var(--p-med);background:var(--p-med-bg)}
 .pb-low{color:var(--p-low);background:var(--p-low-bg)}
 
-.cb{
-  font-size:9px;font-weight:600;padding:2px 7px;
-  border-radius:10px;text-transform:uppercase;letter-spacing:.3px;
-}
+.cb{font-size:9px;font-weight:600;padding:2px 6px;border-radius:10px;text-transform:uppercase;letter-spacing:.3px}
 .cb-Account{color:var(--c-account);background:var(--c-account-bg)}
 .cb-Network{color:var(--c-network);background:var(--c-network-bg)}
 .cb-Software{color:var(--c-software);background:var(--c-software-bg)}
 .cb-Hardware{color:var(--c-hardware);background:var(--c-hardware-bg)}
 .cb-Security{color:var(--c-security);background:var(--c-security-bg)}
+.cb-Infrastructure{color:var(--c-infra);background:var(--c-infra-bg)}
+.cb-Cloud{color:var(--c-cloud);background:var(--c-cloud-bg)}
 .cb-General{color:var(--c-general);background:var(--c-general-bg)}
 
-/* ── CHAT AREA ── */
-.chat-area{
-  flex:1;display:flex;flex-direction:column;
-  overflow:hidden;background:var(--bg-chat);min-width:0;
-}
-.chat-top{
-  padding:12px 18px;border-bottom:1px solid var(--border);
-  background:var(--bg-card);display:flex;align-items:center;
-  gap:11px;flex-shrink:0;
-}
-.ai-av{
-  width:36px;height:36px;flex-shrink:0;border-radius:var(--r-sm);
-  background:linear-gradient(135deg,#4F46E5,#7C3AED);
-  display:flex;align-items:center;justify-content:center;font-size:17px;
-}
-.chat-top h3{font-size:14px;font-weight:600;color:var(--fg)}
+.lv{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px}
+.lv-L1{color:var(--lv1);background:var(--lv1-bg)}
+.lv-L2{color:var(--lv2);background:var(--lv2-bg)}
+.lv-L3{color:var(--lv3);background:var(--lv3-bg)}
+
+/* CHAT */
+.chat-area{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg-chat);min-width:0}
+.chat-top{padding:11px 16px;border-bottom:1px solid var(--border);background:var(--bg-card);display:flex;align-items:center;gap:10px;flex-shrink:0}
+.ai-av{width:34px;height:34px;flex-shrink:0;border-radius:var(--r-sm);background:linear-gradient(135deg,#4F46E5,#7C3AED);display:flex;align-items:center;justify-content:center;font-size:16px}
+.chat-top h3{font-size:13px;font-weight:600;color:var(--fg)}
 .chat-top p{font-size:11px;color:var(--fg-3)}
+.level-legend{display:flex;gap:6px;margin-left:auto;flex-shrink:0}
+.ll{font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px}
+.ll-1{color:var(--lv1);background:var(--lv1-bg)}
+.ll-2{color:var(--lv2);background:var(--lv2-bg)}
+.ll-3{color:var(--lv3);background:var(--lv3-bg)}
 
-.messages{
-  flex:1;overflow-y:auto;padding:18px;
-  display:flex;flex-direction:column;gap:14px;
-}
+.messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:13px}
 
-/* Message bubbles */
-.msg{display:flex;gap:9px;max-width:88%}
+.msg{display:flex;gap:8px;max-width:90%}
 .msg.user{align-self:flex-end;flex-direction:row-reverse}
 .msg.ai{align-self:flex-start}
-
-.m-av{
-  width:28px;height:28px;border-radius:var(--r-xs);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12px;flex-shrink:0;margin-top:3px;
-}
+.m-av{width:27px;height:27px;border-radius:var(--r-xs);display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;margin-top:3px}
 .msg.ai .m-av{background:linear-gradient(135deg,#4F46E5,#7C3AED)}
-.msg.user .m-av{background:var(--bg-surface);border:1px solid var(--border);font-size:14px}
-
+.msg.user .m-av{background:var(--bg-surface);border:1px solid var(--border);font-size:13px}
 .m-body{flex:1;min-width:0}
-.bubble{
-  padding:11px 14px;font-size:13.5px;line-height:1.65;
-  word-break:break-word;border-radius:var(--r);
-}
-.msg.ai .bubble{
-  background:var(--ai-bg);color:var(--fg);
-  border:1px solid var(--border);box-shadow:var(--shadow);
-  border-radius:var(--r) var(--r) var(--r) 2px;
-}
-.msg.user .bubble{
-  background:var(--user-bg);color:#fff;
-  border-radius:var(--r) var(--r) 2px var(--r);
-}
+.bubble{padding:10px 13px;font-size:13.5px;line-height:1.65;word-break:break-word;border-radius:var(--r)}
+.msg.ai .bubble{background:var(--ai-bg);color:var(--fg);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:var(--r) var(--r) var(--r) 2px}
+.msg.user .bubble{background:var(--user-bg);color:#fff;border-radius:var(--r) var(--r) 2px var(--r)}
 .m-time{font-size:10px;color:var(--fg-3);margin-top:4px;padding:0 2px}
 .msg.user .m-time{text-align:right}
 
-/* Steps inside bubble */
-.ai-steps{
-  margin:10px 0 4px;padding-left:0;list-style:none;
-  display:flex;flex-direction:column;gap:6px;counter-reset:step;
-}
-.ai-steps li{
-  font-size:13px;color:var(--fg-2);padding-left:24px;
-  position:relative;line-height:1.5;
-}
-.ai-steps li::before{
-  content:counter(step);counter-increment:step;
-  position:absolute;left:0;top:1px;
-  width:16px;height:16px;border-radius:50%;
-  background:var(--accent);color:#fff;font-size:9px;
-  font-weight:700;display:flex;align-items:center;justify-content:center;
-}
-.ai-note{
-  margin-top:10px;padding:9px 12px;font-size:12px;
-  background:var(--p-low-bg);border-left:3px solid var(--p-low);
-  border-radius:0 var(--r-xs) var(--r-xs) 0;color:var(--fg-2);
-  line-height:1.5;
-}
-.ai-warn{
-  margin-top:10px;padding:9px 12px;font-size:12px;
-  background:var(--p-crit-bg);border-left:3px solid var(--p-crit);
-  border-radius:0 var(--r-xs) var(--r-xs) 0;color:var(--fg-2);
-  line-height:1.5;
-}
-.tkt-card{
-  margin-top:11px;padding:9px 12px;
-  background:var(--bg-surface);border:1px solid var(--border);
-  border-radius:var(--r-sm);display:flex;flex-wrap:wrap;gap:7px;
-  align-items:center;
-}
-.tkt-card .tc-id{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  font-weight:500;color:var(--accent);
-}
-.sla-txt{font-size:11px;color:var(--fg-3)}
+/* Response content */
+.ai-steps{margin:9px 0 4px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:5px;counter-reset:step}
+.ai-steps li{font-size:13px;color:var(--fg-2);padding-left:23px;position:relative;line-height:1.5}
+.ai-steps li::before{content:counter(step);counter-increment:step;position:absolute;left:0;top:1px;width:15px;height:15px;border-radius:50%;background:var(--accent);color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
 
-kbd{
-  font-family:'JetBrains Mono',monospace;font-size:11px;
-  background:var(--bg-surface);border:1px solid var(--border);
-  border-radius:4px;padding:1px 5px;color:var(--accent);
-}
+.note-l1{margin-top:9px;padding:8px 11px;font-size:12px;background:var(--lv1-bg);border-left:3px solid var(--lv1);border-radius:0 var(--r-xs) var(--r-xs) 0;color:var(--fg-2);line-height:1.5}
+.note-l2{margin-top:9px;padding:8px 11px;font-size:12px;background:var(--lv2-bg);border-left:3px solid var(--lv2);border-radius:0 var(--r-xs) var(--r-xs) 0;color:var(--fg-2);line-height:1.5}
+.note-l3{margin-top:9px;padding:8px 11px;font-size:12px;background:var(--lv3-bg);border-left:3px solid var(--lv3);border-radius:0 var(--r-xs) var(--r-xs) 0;color:var(--fg-2);line-height:1.5}
+.escalate{margin:10px 0 5px;padding:10px 13px;font-size:13px;font-weight:600;background:var(--lv3-bg);border:1px solid var(--lv3);border-radius:var(--r-sm);color:var(--lv3);display:flex;align-items:center;gap:8px}
 
-/* Typing animation */
-.typing-wrap{display:flex;gap:9px;align-self:flex-start;max-width:80%}
-.dots{
-  padding:12px 16px;background:var(--ai-bg);
-  border:1px solid var(--border);border-radius:var(--r) var(--r) var(--r) 2px;
-  box-shadow:var(--shadow);display:flex;gap:4px;align-items:center;
-}
-.dots span{
-  width:6px;height:6px;border-radius:50%;background:var(--accent);
-  animation:bounce 1.2s infinite;
-}
-.dots span:nth-child(2){animation-delay:.2s}
-.dots span:nth-child(3){animation-delay:.4s}
+.tkt-card{margin-top:10px;padding:8px 11px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-sm);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.tc-id{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;color:var(--accent)}
+.sla-t{font-size:11px;color:var(--fg-3)}
+kbd{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--bg-surface);border:1px solid var(--border);border-radius:4px;padding:1px 5px;color:var(--accent)}
+
+/* Typing */
+.typing-wrap{display:flex;gap:8px;align-self:flex-start}
+.dots{padding:11px 14px;background:var(--ai-bg);border:1px solid var(--border);border-radius:var(--r) var(--r) var(--r) 2px;box-shadow:var(--shadow);display:flex;gap:4px;align-items:center}
+.dots span{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:bounce 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
 @keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-6px);opacity:1}}
 
-/* Quick chips */
-.chips{
-  padding:10px 18px 0;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;
-}
-.chip{
-  font-size:12px;font-weight:500;padding:5px 12px;
-  border-radius:20px;border:1px solid var(--border);
-  background:var(--bg-card);color:var(--fg-2);
-  cursor:pointer;transition:all .15s;white-space:nowrap;
-}
+/* Chips */
+.chips-wrap{padding:8px 16px 0;flex-shrink:0}
+.chips-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.7px;color:var(--fg-3);margin-bottom:5px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.chip{font-size:11px;font-weight:500;padding:4px 10px;border-radius:20px;border:1px solid var(--border);background:var(--bg-card);color:var(--fg-2);cursor:pointer;transition:all .15s;white-space:nowrap;display:flex;align-items:center;gap:4px}
 .chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.chip .lv{font-size:8px;padding:1px 4px}
 
 /* Input */
-.input-zone{
-  padding:14px 18px;border-top:1px solid var(--border);
-  background:var(--bg-card);flex-shrink:0;
-}
-.input-row{display:flex;gap:9px;align-items:flex-end}
-.chat-in{
-  flex:1;padding:10px 13px;font-size:14px;
-  font-family:'Inter',sans-serif;border:1.5px solid var(--border);
-  border-radius:var(--r-sm);background:var(--bg-input);color:var(--fg);
-  resize:none;line-height:1.5;outline:none;
-  transition:border-color .15s;min-height:44px;max-height:110px;
-}
+.input-zone{padding:12px 16px;border-top:1px solid var(--border);background:var(--bg-card);flex-shrink:0}
+.input-row{display:flex;gap:8px;align-items:flex-end}
+.chat-in{flex:1;padding:9px 12px;font-size:13.5px;font-family:'Inter',sans-serif;border:1.5px solid var(--border);border-radius:var(--r-sm);background:var(--bg-input);color:var(--fg);resize:none;line-height:1.5;outline:none;transition:border-color .15s;min-height:42px;max-height:100px}
 .chat-in:focus{border-color:var(--accent)}
 .chat-in::placeholder{color:var(--fg-3)}
-.send{
-  width:44px;height:44px;border-radius:var(--r-sm);
-  border:none;background:var(--accent);color:#fff;
-  cursor:pointer;display:flex;align-items:center;
-  justify-content:center;transition:opacity .15s;flex-shrink:0;
-}
-.send:hover{opacity:.85}
-.send:disabled{opacity:.4;cursor:not-allowed}
-.send svg{width:18px;height:18px;fill:white}
-.hint{font-size:11px;color:var(--fg-3);text-align:center;margin-top:7px}
+.send{width:42px;height:42px;border-radius:var(--r-sm);border:none;background:var(--accent);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .15s;flex-shrink:0}
+.send:hover{opacity:.85}.send:disabled{opacity:.4;cursor:not-allowed}
+.send svg{width:17px;height:17px;fill:white}
+.hint{font-size:10px;color:var(--fg-3);text-align:center;margin-top:6px}
 
-/* Welcome message */
-.welcome{
-  background:linear-gradient(135deg,#4F46E5 0%,#7C3AED 100%);
-  border-radius:var(--r);padding:16px 18px;color:#fff;max-width:88%;
-  align-self:flex-start;
-}
-.welcome h2{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:5px}
-.welcome p{font-size:13px;opacity:.88;line-height:1.55}
+/* Welcome */
+.welcome{background:linear-gradient(135deg,#4F46E5 0%,#7C3AED 100%);border-radius:var(--r);padding:14px 16px;color:#fff;max-width:90%;align-self:flex-start}
+.welcome h2{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:4px}
+.welcome p{font-size:12.5px;opacity:.88;line-height:1.55}
 
-/* Responsive */
-@media(max-width:680px){
-  .sidebar{display:none}
-  .built-by,.nav-sub{display:none}
-}
-@media(max-width:480px){
-  .chips{padding:8px 12px 0}
-  .messages{padding:12px}
-  .input-zone{padding:10px 12px}
-}
+@media(max-width:680px){.sidebar{display:none}.built-by,.nav-sub,.level-legend{display:none}}
+@media(max-width:480px){.chips-wrap{padding:6px 10px 0}.messages{padding:10px}.input-zone{padding:9px 10px}}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-brand">
     <div class="nav-logo">
@@ -403,565 +240,632 @@ kbd{
     </div>
     <div>
       <div class="nav-title">AI Helpdesk Assistant</div>
-      <div class="nav-sub">IT Service Desk · AI Demo</div>
+      <div class="nav-sub">Enterprise IT · L1 / L2 / L3 Support</div>
     </div>
   </div>
   <div class="nav-right">
     <div class="status-pill"><span class="dot"></span>AI Online</div>
-    <button class="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌓</button>
+    <button class="theme-btn" onclick="toggleTheme()">🌓</button>
     <div class="built-by">Built by <b>Prabhash Ranjan</b></div>
   </div>
 </nav>
 
 <div class="layout">
-
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <div class="s-section">
-      <div class="s-label">Live Dashboard</div>
+    <div class="s-sec">
+      <div class="s-lbl">Live Dashboard</div>
       <div class="kpi-grid">
-        <div class="kpi"><div class="kpi-v" id="kOpen">3</div><div class="kpi-l">Open Tickets</div></div>
-        <div class="kpi"><div class="kpi-v" id="kResolved">12</div><div class="kpi-l">Resolved Today</div></div>
-        <div class="kpi"><div class="kpi-v" id="kAvg">4.2m</div><div class="kpi-l">Avg Resolution</div></div>
-        <div class="kpi"><div class="kpi-v" id="kSat">96%</div><div class="kpi-l">Satisfaction</div></div>
+        <div class="kpi"><div class="kpi-v" id="kOpen">5</div><div class="kpi-l">Open Tickets</div></div>
+        <div class="kpi"><div class="kpi-v" id="kResolved">18</div><div class="kpi-l">Resolved Today</div></div>
+        <div class="kpi"><div class="kpi-v" id="kAvg">3.8m</div><div class="kpi-l">Avg Resolution</div></div>
+        <div class="kpi"><div class="kpi-v" id="kSat">97%</div><div class="kpi-l">CSAT Score</div></div>
       </div>
     </div>
-    <div class="s-section" style="padding-bottom:4px">
-      <div class="s-label">Recent Tickets</div>
+    <div class="lvl-row">
+      <div class="lv-tile l1"><div class="n" id="kL1">3</div><div class="t">L1 Open</div></div>
+      <div class="lv-tile l2"><div class="n" id="kL2">1</div><div class="t">L2 Open</div></div>
+      <div class="lv-tile l3"><div class="n" id="kL3">1</div><div class="t">L3 Critical</div></div>
     </div>
+    <div class="s-sec tickets"><div class="s-lbl">Recent Tickets</div></div>
     <div class="ticket-list" id="ticketList">
-      <!-- Pre-seeded demo tickets -->
       <div class="t-item" onclick="selectTicket(this)">
-        <div class="t-top">
-          <span class="t-id">TKT-2026-0001</span>
-          <span class="pb pb-high">High</span>
-        </div>
-        <div class="t-title">VPN connection failing</div>
-        <div class="t-meta">
-          <span class="cb cb-Network">Network</span>
-          <span style="font-size:10px;color:var(--fg-3)">09:14 AM</span>
-        </div>
+        <div class="t-top"><span class="t-id">TKT-2026-0001</span><span class="lv lv-L1">L1</span><span class="pb pb-high">High</span></div>
+        <div class="t-title">Password reset — user locked</div>
+        <div class="t-meta"><span class="cb cb-Account">Account</span><span style="font-size:10px;color:var(--fg-3)">09:10</span></div>
       </div>
       <div class="t-item" onclick="selectTicket(this)">
-        <div class="t-top">
-          <span class="t-id">TKT-2026-0002</span>
-          <span class="pb pb-med">Medium</span>
-        </div>
-        <div class="t-title">Outlook not opening</div>
-        <div class="t-meta">
-          <span class="cb cb-Software">Software</span>
-          <span style="font-size:10px;color:var(--fg-3)">10:30 AM</span>
-        </div>
+        <div class="t-top"><span class="t-id">TKT-2026-0002</span><span class="lv lv-L2">L2</span><span class="pb pb-med">Medium</span></div>
+        <div class="t-title">Citrix VDI login failure</div>
+        <div class="t-meta"><span class="cb cb-Software">Software</span><span style="font-size:10px;color:var(--fg-3)">10:02</span></div>
       </div>
       <div class="t-item" onclick="selectTicket(this)">
-        <div class="t-top">
-          <span class="t-id">TKT-2026-0003</span>
-          <span class="pb pb-low">Low</span>
-        </div>
-        <div class="t-title">Printer offline – 3rd Floor</div>
-        <div class="t-meta">
-          <span class="cb cb-Hardware">Hardware</span>
-          <span style="font-size:10px;color:var(--fg-3)">11:05 AM</span>
-        </div>
+        <div class="t-top"><span class="t-id">TKT-2026-0003</span><span class="lv lv-L3">L3</span><span class="pb pb-crit">Critical</span></div>
+        <div class="t-title">Production server unresponsive</div>
+        <div class="t-meta"><span class="cb cb-Infrastructure">Infra</span><span style="font-size:10px;color:var(--fg-3)">10:45</span></div>
+      </div>
+      <div class="t-item" onclick="selectTicket(this)">
+        <div class="t-top"><span class="t-id">TKT-2026-0004</span><span class="lv lv-L1">L1</span><span class="pb pb-low">Low</span></div>
+        <div class="t-title">Printer offline — Floor 2</div>
+        <div class="t-meta"><span class="cb cb-Hardware">Hardware</span><span style="font-size:10px;color:var(--fg-3)">11:20</span></div>
+      </div>
+      <div class="t-item" onclick="selectTicket(this)">
+        <div class="t-top"><span class="t-id">TKT-2026-0005</span><span class="lv lv-L2">L2</span><span class="pb pb-high">High</span></div>
+        <div class="t-title">SSL certificate expired — portal</div>
+        <div class="t-meta"><span class="cb cb-Security">Security</span><span style="font-size:10px;color:var(--fg-3)">12:15</span></div>
       </div>
     </div>
   </aside>
 
-  <!-- CHAT AREA -->
+  <!-- CHAT -->
   <section class="chat-area">
     <div class="chat-top">
       <div class="ai-av">🤖</div>
       <div>
-        <h3>HelpBot AI — Level 1 Support</h3>
-        <p>Powered by AI · Auto-classify · Instant resolution steps</p>
+        <h3>HelpBot AI — Enterprise Support</h3>
+        <p>Auto-classify · Auto-escalate · L1 → L2 → L3 routing</p>
+      </div>
+      <div class="level-legend">
+        <span class="ll ll-1">L1 Basic</span>
+        <span class="ll ll-2">L2 Tech</span>
+        <span class="ll ll-3">L3 Expert</span>
       </div>
     </div>
 
     <div class="messages" id="messages">
-      <!-- Welcome -->
       <div class="welcome">
-        <h2>👋 Hello! I'm your AI Helpdesk Assistant.</h2>
-        <p>Describe your IT issue and I'll instantly classify it, create a ticket, and walk you through the resolution steps. No waiting in queue!</p>
+        <h2>👋 Enterprise IT Helpdesk AI</h2>
+        <p>Type any IT issue — from basic password resets (L1) to server outages (L3). AI will classify, create a ticket, and route to the right team automatically.</p>
       </div>
     </div>
 
-    <!-- Quick action chips -->
-    <div class="chips">
-      <div class="chip" onclick="sendChip(this)">🔑 Password Reset</div>
-      <div class="chip" onclick="sendChip(this)">🌐 VPN Not Working</div>
-      <div class="chip" onclick="sendChip(this)">📧 Email Issue</div>
-      <div class="chip" onclick="sendChip(this)">🖨️ Printer Offline</div>
-      <div class="chip" onclick="sendChip(this)">💻 Laptop Slow</div>
-      <div class="chip" onclick="sendChip(this)">🔒 Account Locked</div>
+    <!-- Quick chips -->
+    <div class="chips-wrap">
+      <div class="chips-label">L1 — Common Issues</div>
+      <div class="chips">
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L1">L1</span>Password Reset</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L1">L1</span>VPN Not Working</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L1">L1</span>Outlook Issue</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L1">L1</span>Laptop Slow</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L1">L1</span>MFA Not Working</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L1">L1</span>Printer Offline</div>
+      </div>
+      <div class="chips">
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L2">L2</span>Citrix VDI Login</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L2">L2</span>SAP Not Opening</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L2">L2</span>Certificate Error</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L2">L2</span>SharePoint Access</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L2">L2</span>RDP Not Connecting</div>
+        <div class="chip" onclick="sendChip(this)"><span class="lv lv-L3">L3</span>Server Down</div>
+      </div>
     </div>
 
-    <!-- Input -->
     <div class="input-zone">
       <div class="input-row">
         <textarea class="chat-in" id="chatInput" rows="1"
-          placeholder="Describe your IT issue… e.g. 'My VPN is not connecting since morning'"
+          placeholder="Describe your IT issue… e.g. 'Production database is not responding'"
           onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
         <button class="send" id="sendBtn" onclick="send()">
           <svg viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/></svg>
         </button>
       </div>
-      <div class="hint">This is a portfolio demo by Prabhash Ranjan · IT Service Desk + AI Integration</div>
+      <div class="hint">Portfolio Demo — Prabhash Ranjan · Enterprise IT + AI Integration</div>
     </div>
   </section>
 </div>
 
 <script>
-// ── State ──────────────────────────────────────────────────────
-let ticketCounter = 3;
-let openCount = 3;
-let resolvedCount = 12;
-let busy = false;
+let ticketCounter = 5, openL1 = 3, openL2 = 1, openL3 = 1, resolved = 18, busy = false;
 
-function now() {
-  return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-}
+const now = () => new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+const newId = () => `TKT-2026-${String(++ticketCounter).padStart(4,'0')}`;
+const esc = t => t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-function newTktId() {
-  return `TKT-2026-${String(++ticketCounter).padStart(4, '0')}`;
-}
+const pbMap = {Critical:'pb-crit',High:'pb-high',Medium:'pb-med',Low:'pb-low'};
 
-// ── Knowledge Base ─────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════
+// KNOWLEDGE BASE — 40 Issues, L1 / L2 / L3
+// ══════════════════════════════════════════════════════════════
 const KB = [
-  {
-    test: t => /password|passwd|reset.*pass|forgot.*pass|can'?t log|unable to login|credentials?|change.*password/i.test(t),
-    cat: 'Account', catLabel: 'Account Management',
-    priority: 'High', sla: '4 hrs',
-    title: 'Password / Login Issue',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — I'll help you regain access immediately.<br><br>
-<ul class="ai-steps">
-  <li>Open your IT Self-Service Portal → click <strong>"Forgot Password"</strong></li>
-  <li>Enter your <strong>Employee ID</strong> and verify via OTP on your registered mobile</li>
-  <li>Set new password: min 8 chars, 1 uppercase, 1 number, 1 special character</li>
-  <li>For <strong>Okta</strong> accounts → visit <kbd>company.okta.com</kbd> → Self-Service Reset</li>
-  <li>If still locked, call IT Helpdesk: <strong>1800-XXX-XXXX</strong> (available 24×7)</li>
-</ul>
-<div class="ai-note">✅ <strong>85% of password issues</strong> are resolved via self-service in under 2 minutes.</div>`;
-    }
-  },
-  {
-    test: t => /account.*locked?|locked? out|ad account|active directory.*lock/i.test(t),
-    cat: 'Account', catLabel: 'Account Management',
-    priority: 'Critical', sla: '1 hr',
-    title: 'Account Locked Out',
-    respond(id) {
-      return `<strong>CRITICAL — Ticket ${id} raised</strong> with priority escalation.<br><br>
-<div class="ai-warn">⚠️ Account lockout may indicate a security event. Do NOT attempt further logins to avoid extended lockout.</div>
-<ul class="ai-steps">
-  <li>Call IT Security desk immediately: <strong>1800-XXX-XXXX Ext. 2</strong></li>
-  <li>Provide your <strong>Employee ID + Manager's name</strong> for identity verification</li>
-  <li>IT will unlock the Active Directory account after verification</li>
-  <li>Check if your mobile/tablet is auto-syncing with old password — update those too</li>
-  <li>After unlock, reset password immediately via Self-Service Portal</li>
-</ul>`;
-    }
-  },
-  {
-    test: t => /vpn|remote.*(work|access|connect)|cisco.*any|anyconnect|pulse secure|work from home|wfh.*connect/i.test(t),
-    cat: 'Network', catLabel: 'Network',
-    priority: 'High', sla: '4 hrs',
-    title: 'VPN / Remote Access',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Let's get your VPN working.<br><br>
-<ul class="ai-steps">
-  <li>Restart <strong>Cisco AnyConnect / Pulse Secure</strong> client completely (right-click → Quit, reopen)</li>
-  <li>Check internet connection is working — open <kbd>google.com</kbd> in browser</li>
-  <li>Try alternate VPN gateway: in AnyConnect, change server to <kbd>vpn2.company.com</kbd></li>
-  <li>Disable any <strong>personal firewall/antivirus</strong> temporarily and retry VPN</li>
-  <li>Reinstall VPN client: download fresh from <kbd>it.company.com/vpn</kbd></li>
-  <li>For MacOS: go to System Settings → Privacy & Security → allow VPN extension</li>
-</ul>
-<div class="ai-note">🌐 If issue persists after all steps, IT will schedule a <strong>TeamViewer remote session</strong> to diagnose.</div>`;
-    }
-  },
-  {
-    test: t => /email|outlook|mail|inbox|calendar.*not|exchange|owa|webmail|smtp|cannot.*send|cannot.*receive/i.test(t),
-    cat: 'Software', catLabel: 'Software',
-    priority: 'High', sla: '4 hrs',
-    title: 'Email / Outlook Issue',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Diagnosing your Outlook issue.<br><br>
-<ul class="ai-steps">
-  <li>Close Outlook completely → reopen and wait 2 minutes for sync</li>
-  <li>Check Outlook status: look for <strong>"Working Offline"</strong> mode in bottom status bar — click to disable</li>
-  <li>Run Outlook in Safe Mode: <kbd>Win+R</kbd> → type <kbd>outlook /safe</kbd> → Enter</li>
-  <li>If Safe Mode works → go to File → Options → Add-ins → Disable all add-ins</li>
-  <li>Repair Office: Control Panel → Programs → Microsoft 365 → <strong>Quick Repair</strong></li>
-  <li>Check OWA (web mail) at <kbd>mail.company.com</kbd> — if web works, it's a local app issue</li>
-</ul>
-<div class="ai-note">📧 For calendar sync issues specifically, run: File → Account Settings → Repair Account</div>`;
-    }
-  },
-  {
-    test: t => /printer|print|scanning|scan.*to|cannot.*print|printer.*offline|stuck.*print/i.test(t),
-    cat: 'Hardware', catLabel: 'Hardware',
-    priority: 'Medium', sla: '8 hrs',
-    title: 'Printer / Print Issue',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Let's get your printer working.<br><br>
-<ul class="ai-steps">
-  <li>Check printer power and that it shows <strong>Ready</strong> (not Error/Offline) on display</li>
-  <li>On your PC: Settings → Printers & Scanners → right-click printer → <strong>See what's printing</strong> → Cancel all jobs</li>
-  <li>Set printer <strong>Online</strong>: right-click printer → <em>"Use Printer Online"</em></li>
-  <li>Restart the <strong>Print Spooler</strong>: <kbd>Win+R</kbd> → <kbd>services.msc</kbd> → find Print Spooler → Restart</li>
-  <li>Remove and re-add printer: Settings → Printers → Remove → Add a printer</li>
-  <li>For network printers: verify you're on company WiFi/LAN (not guest network)</li>
-</ul>`;
-    }
-  },
-  {
-    test: t => /wifi|wi-fi|wireless|internet.*not|no.*internet|network.*down|cannot.*connect.*internet|ping/i.test(t),
-    cat: 'Network', catLabel: 'Network',
-    priority: 'High', sla: '2 hrs',
-    title: 'Network / Internet Issue',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Let's restore your connectivity.<br><br>
-<ul class="ai-steps">
-  <li>Run network troubleshooter: Settings → System → Troubleshoot → Internet Connections</li>
-  <li>Disconnect from current WiFi → reconnect to <strong>CORP-WIFI</strong> (not Guest network)</li>
-  <li>Forget network and reconnect: Settings → WiFi → Manage Known Networks → Forget → reconnect</li>
-  <li>Flush DNS cache: open <strong>Command Prompt as Admin</strong> → run <kbd>ipconfig /flushdns</kbd></li>
-  <li>Reset network stack: run <kbd>netsh winsock reset</kbd> → restart PC</li>
-  <li>Try LAN cable if available — if LAN works but WiFi doesn't, it's a wireless adapter issue</li>
-</ul>
-<div class="ai-note">🔧 If multiple users affected in same area — likely a network infrastructure issue. IT Network team will be alerted.</div>`;
-    }
-  },
-  {
-    test: t => /slow|hang|freeze|lagging?|performance|ram|cpu|overheating|fan.*noise|taking.*long|loading.*slow/i.test(t),
-    cat: 'Hardware', catLabel: 'Hardware',
-    priority: 'Low', sla: '2 days',
-    title: 'Laptop Performance / Slow',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Let's speed up your laptop.<br><br>
-<ul class="ai-steps">
-  <li>Check what's consuming resources: <kbd>Ctrl+Shift+Esc</kbd> → Task Manager → CPU/Memory tab — identify heavy processes</li>
-  <li>Restart the laptop fully (not just sleep/hibernate) — clears memory leaks</li>
-  <li>Free up disk space: delete from <strong>Downloads</strong> folder + empty Recycle Bin. Keep at least 15% disk free</li>
-  <li>Disable startup programs: Task Manager → Startup tab → disable non-essential apps</li>
-  <li>Run disk cleanup: <kbd>Win+R</kbd> → <kbd>cleanmgr</kbd> → select all checkboxes → OK</li>
-  <li>Check for Windows updates — sometimes pending updates cause background load</li>
-</ul>
-<div class="ai-note">💡 If laptop is 4+ years old, IT will assess for <strong>RAM upgrade or replacement</strong> under IT refresh policy.</div>`;
-    }
-  },
-  {
-    test: t => /teams|zoom|video.*call|microsoft.*teams|meet.*problem|audio.*call|mic.*not|camera.*not|webex|google.*meet/i.test(t),
-    cat: 'Software', catLabel: 'Software',
-    priority: 'Medium', sla: '4 hrs',
-    title: 'Teams / Video Conferencing',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Let's fix your Teams / video call issue.<br><br>
-<ul class="ai-steps">
-  <li>Sign out of Teams completely → sign back in with work email</li>
-  <li>Clear Teams cache: close Teams → go to <kbd>%appdata%\\Microsoft\\Teams</kbd> → delete all folders inside (except <em>meetings-addin</em>) → reopen Teams</li>
-  <li>Check audio/video settings: Teams → Settings → Devices — select correct mic & speaker & camera</li>
-  <li>Allow camera/mic access: Windows Settings → Privacy → Camera → enable for Teams</li>
-  <li>Try Teams Web version at <kbd>teams.microsoft.com</kbd> — if web works, reinstall the app</li>
-  <li>For persistent issues: uninstall Teams → download fresh from <kbd>it.company.com/downloads</kbd></li>
-</ul>`;
-    }
-  },
-  {
-    test: t => /install|software request|need.*software|download.*application|access.*tool|license/i.test(t),
-    cat: 'Software', catLabel: 'Software',
-    priority: 'Low', sla: '2 days',
-    title: 'Software Installation Request',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Processing your software request.<br><br>
-<ul class="ai-steps">
-  <li>Check the <strong>Company Software Portal</strong> at <kbd>it.company.com/software</kbd> — approved apps can be self-installed</li>
-  <li>If not in portal, submit a <strong>Software Access Request</strong> form with business justification</li>
-  <li>Manager approval required for most software — your manager will receive an email</li>
-  <li>License-based software (Adobe, AutoCAD) requires procurement approval — allow 3-5 business days</li>
-  <li>Once approved, IT will push installation via <strong>SCCM/Intune</strong> — you'll get a notification</li>
-</ul>
-<div class="ai-note">⚡ Common tools like <strong>7-Zip, Notepad++, VLC, Zoom</strong> are pre-approved — available immediately in Software Portal.</div>`;
-    }
-  },
-  {
-    test: t => /blue.*screen|bsod|crash|restart.*itself|window.*crash|black.*screen|system.*crash/i.test(t),
-    cat: 'Hardware', catLabel: 'Hardware',
-    priority: 'Critical', sla: '1 hr',
-    title: 'System Crash / BSOD',
-    respond(id) {
-      return `<strong>CRITICAL — Ticket ${id} created</strong> with highest priority.<br><br>
-<div class="ai-warn">⚠️ System crashes can indicate failing hardware or a critical OS issue. Do NOT install or run anything until resolved.</div>
-<ul class="ai-steps">
-  <li>Note the <strong>error code</strong> shown on blue screen (e.g. MEMORY_MANAGEMENT, CRITICAL_PROCESS_DIED)</li>
-  <li>Check Windows Event Viewer: <kbd>Win+R</kbd> → <kbd>eventvwr</kbd> → Windows Logs → System → look for Critical errors</li>
-  <li>Run memory diagnostic: <kbd>Win+R</kbd> → <kbd>mdsched</kbd> → restart now to check RAM</li>
-  <li>Scan system files: open <strong>Command Prompt as Admin</strong> → run <kbd>sfc /scannow</kbd></li>
-  <li>Check hard disk: run <kbd>chkdsk C: /f</kbd> in admin CMD — schedule for next restart</li>
-  <li>If crash is frequent → <strong>do NOT shut down</strong>, keep on and call IT immediately for on-site visit</li>
-</ul>`;
-    }
-  },
-  {
-    test: t => /access.*denied?|permission|cannot.*open.*file|shared.*drive|network.*drive|folder.*access|sharepoint/i.test(t),
-    cat: 'Security', catLabel: 'Security',
-    priority: 'High', sla: '4 hrs',
-    title: 'File / Folder Access Issue',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Investigating your access issue.<br><br>
-<ul class="ai-steps">
-  <li>Confirm you are on <strong>company network or VPN</strong> — shared drives require network connection</li>
-  <li>Check if others in your team can access — helps confirm if it's personal or group permission</li>
-  <li>Ask your <strong>Manager or Team Lead</strong> to raise an Access Request in the IT Portal — access is provisioned by role</li>
-  <li>For SharePoint: check if the site/folder was shared with you — ask the document owner to re-share</li>
-  <li>Map network drive again: File Explorer → <em>This PC</em> → Map Network Drive → use correct server path</li>
-  <li>IT Security team will verify your Active Directory group memberships and provision access</li>
-</ul>`;
-    }
-  },
-  {
-    test: t => /new.*join|new.*employee|onboard|setup.*laptop|fresh.*install|new.*hire|joining/i.test(t),
-    cat: 'Account', catLabel: 'Account Management',
-    priority: 'Medium', sla: '1 day',
-    title: 'New Employee Setup',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Welcome setup initiated!<br><br>
-<ul class="ai-steps">
-  <li>IT Onboarding team will create your <strong>Active Directory account</strong> within 4 hours of HR approval</li>
-  <li>Credentials will be emailed to your personal email and given to your manager</li>
-  <li>Standard software package (Office 365, Teams, VPN, Antivirus) will be pushed automatically</li>
-  <li>Connect your laptop to office WiFi → updates will install overnight</li>
-  <li>Complete <strong>IT Security Awareness Training</strong> on Day 1 — link sent to your email</li>
-  <li>For access to specific systems, your manager submits access request in IT Portal</li>
-</ul>
-<div class="ai-note">🎉 Typical setup time: <strong>4-8 hours</strong>. You'll receive a welcome email with all IT contacts and links.</div>`;
-    }
-  },
-  {
-    test: t => /antivirus|virus|malware|infected|suspicious|hack|phish|scam|ransomware|threat/i.test(t),
-    cat: 'Security', catLabel: 'Security',
-    priority: 'Critical', sla: '30 mins',
-    title: 'Security Threat / Antivirus',
-    respond(id) {
-      return `<strong>CRITICAL SECURITY ALERT — Ticket ${id} raised</strong> with immediate escalation to IT Security.<br><br>
-<div class="ai-warn">🚨 DO NOT click any links, open attachments, or enter credentials until IT clears your system.</div>
-<ul class="ai-steps">
-  <li><strong>Disconnect from company network immediately</strong> — unplug LAN cable or disable WiFi</li>
-  <li>Do NOT restart or shut down — forensic data may be needed</li>
-  <li>Call IT Security hotline NOW: <strong>1800-XXX-XXXX Ext. 911</strong></li>
-  <li>Forward suspicious emails to <strong>security@company.com</strong> — do not reply to them</li>
-  <li>Note any unusual behavior: unexpected popups, slow system, files changed</li>
-  <li>IT Security will remote in for immediate scan and containment</li>
-</ul>`;
-    }
-  },
-  {
-    test: t => /teamviewer|remote.*support|remote.*assist|take.*control|share.*screen/i.test(t),
-    cat: 'Software', catLabel: 'Software',
-    priority: 'Medium', sla: '4 hrs',
-    title: 'Remote Support Session',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — Remote support session setup.<br><br>
-<ul class="ai-steps">
-  <li>Download <strong>TeamViewer QuickSupport</strong> from <kbd>it.company.com/remote</kbd> — no installation needed</li>
-  <li>Run the downloaded file — you'll see a <strong>9-digit ID and password</strong></li>
-  <li>Share this ID and password with IT Helpdesk — do NOT share with anyone else</li>
-  <li>IT technician will connect and you'll see their actions on screen in real-time</li>
-  <li>You can stop the session anytime by closing TeamViewer or clicking <strong>X</strong></li>
-  <li>Session is recorded for audit purposes as per company IT policy</li>
-</ul>
-<div class="ai-note">🔐 IT will <strong>never ask for your Windows password</strong> during remote support sessions.</div>`;
-    }
-  },
-  {
-    test: t => /servicenow|snow|service now|itsm.*portal|create.*ticket|raise.*ticket/i.test(t),
-    cat: 'Software', catLabel: 'Software',
-    priority: 'Low', sla: '1 day',
-    title: 'ServiceNow / ITSM Portal',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — ServiceNow assistance.<br><br>
-<ul class="ai-steps">
-  <li>Access ServiceNow at <kbd>company.service-now.com</kbd> — login with your AD credentials</li>
-  <li>For new tickets: click <strong>Self Service → Raise Incident</strong></li>
-  <li>For approvals: My Approvals section on the ServiceNow homepage</li>
-  <li>For change requests: Change → Create New (requires manager approval)</li>
-  <li>Check ticket status: My Tickets → search by ticket number</li>
-</ul>
-<div class="ai-note">📋 ServiceNow training videos available at <kbd>it.company.com/training</kbd></div>`;
-    }
-  },
-  {
-    // Default / fallback
-    test: () => true,
-    cat: 'General', catLabel: 'General IT',
-    priority: 'Medium', sla: '8 hrs',
-    title: 'General IT Support',
-    respond(id) {
-      return `<strong>Ticket ${id} created</strong> — IT support request logged.<br><br>
-I've captured your request and routed it to the appropriate IT team. Here's what happens next:<br><br>
-<ul class="ai-steps">
-  <li>Your ticket is assigned to IT Helpdesk Level 1 team</li>
-  <li>A technician will review and respond within <strong>8 business hours</strong></li>
-  <li>You'll receive email updates at each stage of resolution</li>
-  <li>For urgent issues, call: <strong>1800-XXX-XXXX</strong> (24×7 support)</li>
-  <li>Track your ticket status at <kbd>it.company.com/mytickets</kbd></li>
-</ul>
-<div class="ai-note">💡 Try using keywords like "VPN", "password", "printer", "Outlook", "Teams" for instant AI-guided resolution.</div>`;
-    }
-  }
+
+// ─────────── L1 · BASIC ───────────
+
+{level:'L1',test:t=>/password|passwd|forgot.*pass|reset.*pass|can'?t log|unable.*login|credentials?|change.*pass/i.test(t),
+ cat:'Account',catLabel:'Account Mgmt',priority:'High',sla:'4 hrs',title:'Password / Login Issue',
+ respond(id){return`<strong>Ticket ${id} raised.</strong> Follow these steps to regain access:<ul class="ai-steps">
+<li>Go to <strong>IT Self-Service Portal</strong> → click <em>"Forgot Password"</em></li>
+<li>Enter <strong>Employee ID</strong> → verify OTP on registered mobile</li>
+<li>Set new password: min 8 chars, 1 uppercase, 1 number, 1 special char</li>
+<li>For <strong>Okta</strong> → visit <kbd>company.okta.com</kbd> → Self-Service Reset</li>
+<li>Still locked? Call IT: <strong>1800-XXX-XXXX</strong> (24×7)</li></ul>
+<div class="note-l1">✅ L1 — Self-resolvable. 85% cases resolved in &lt;2 mins via portal.</div>`}},
+
+{level:'L1',test:t=>/account.*lock|locked? out|ad.*lock|active directory.*lock/i.test(t),
+ cat:'Account',catLabel:'Account Mgmt',priority:'Critical',sla:'1 hr',title:'AD Account Locked Out',
+ respond(id){return`<strong>CRITICAL — Ticket ${id} raised.</strong><div class="note-l3">⚠️ Do NOT retry login — repeated attempts extend lockout.</div><ul class="ai-steps">
+<li>Call IT Security desk: <strong>1800-XXX-XXXX Ext. 2</strong></li>
+<li>Provide Employee ID + Manager name for identity verification</li>
+<li>IT will unlock Active Directory account after verification</li>
+<li>Update saved password on all synced mobile/tablet devices</li>
+<li>Immediately change password via portal after unlock</li></ul>
+<div class="note-l1">✅ L1 resolution — IT Service Desk handles AD unlocks within 30 mins.</div>`}},
+
+{level:'L1',test:t=>/vpn|remote.*(work|access|connect)|anyconnect|pulse secure|work from home|wfh/i.test(t),
+ cat:'Network',catLabel:'Network',priority:'High',sla:'4 hrs',title:'VPN / Remote Access',
+ respond(id){return`<strong>Ticket ${id} created.</strong> Let's restore your VPN:<ul class="ai-steps">
+<li>Fully quit and restart <strong>Cisco AnyConnect / Pulse Secure</strong></li>
+<li>Verify base internet works — open <kbd>google.com</kbd></li>
+<li>Try alternate gateway: change server to <kbd>vpn2.company.com</kbd></li>
+<li>Temporarily disable personal firewall/antivirus and retry</li>
+<li>Reinstall VPN client from <kbd>it.company.com/vpn</kbd></li>
+<li>MacOS: System Settings → Privacy → allow VPN extension</li></ul>
+<div class="note-l1">✅ L1 — If all steps fail, IT will remote-in via TeamViewer for diagnosis.</div>`}},
+
+{level:'L1',test:t=>/email|outlook|mail.*not|inbox|exchange|owa|cannot.*send|cannot.*receive/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'High',sla:'4 hrs',title:'Email / Outlook Issue',
+ respond(id){return`<strong>Ticket ${id} created.</strong> Diagnosing Outlook:<ul class="ai-steps">
+<li>Close Outlook → reopen, wait 2 minutes for sync</li>
+<li>Check status bar — disable <strong>"Work Offline"</strong> mode if shown</li>
+<li>Run Outlook Safe Mode: <kbd>Win+R</kbd> → type <kbd>outlook /safe</kbd></li>
+<li>Safe Mode works? → File → Options → Add-ins → Disable all</li>
+<li>Repair: Control Panel → Microsoft 365 → <strong>Quick Repair</strong></li>
+<li>Test via web: <kbd>mail.company.com</kbd> — if OWA works, it's a local app issue</li></ul>
+<div class="note-l1">✅ L1 — Web mail working confirms Exchange server is fine.</div>`}},
+
+{level:'L1',test:t=>/printer|print.*not|cannot.*print|printer.*offline|stuck.*print|scan.*to email/i.test(t),
+ cat:'Hardware',catLabel:'Hardware',priority:'Medium',sla:'8 hrs',title:'Printer / Printing Issue',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Check printer shows <strong>"Ready"</strong> on its display (not Error)</li>
+<li>Settings → Printers → right-click → <em>"See what's printing"</em> → Cancel all jobs</li>
+<li>Right-click printer → <em>"Use Printer Online"</em></li>
+<li>Restart Print Spooler: <kbd>Win+R</kbd> → <kbd>services.msc</kbd> → Print Spooler → Restart</li>
+<li>Remove and re-add printer if above fails</li>
+<li>Network printers: confirm you're on company LAN/WiFi, not guest</li></ul>
+<div class="note-l1">✅ L1 — Physical check + spooler restart resolves 90% printer issues.</div>`}},
+
+{level:'L1',test:t=>/wifi|wi-fi|wireless|no.*internet|internet.*not|network.*down|cannot.*connect.*internet/i.test(t),
+ cat:'Network',catLabel:'Network',priority:'High',sla:'2 hrs',title:'Network / Internet Connectivity',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Disconnect from WiFi → reconnect to <strong>CORP-WIFI</strong> (not Guest)</li>
+<li>Run network troubleshooter: Settings → System → Troubleshoot → Internet</li>
+<li>Forget and reconnect: Settings → WiFi → Manage Known Networks → Forget</li>
+<li>Flush DNS: Admin CMD → <kbd>ipconfig /flushdns</kbd></li>
+<li>Reset network: <kbd>netsh winsock reset</kbd> → restart PC</li>
+<li>Try LAN cable — if LAN works but WiFi doesn't, wireless adapter issue</li></ul>
+<div class="note-l1">✅ L1 — If multiple users affected in same area, escalate to L2 Network team.</div>`}},
+
+{level:'L1',test:t=>/slow|hang|freeze|lagging|performance.*issue|ram.*full|high.*cpu|overheating|fan.*noise/i.test(t),
+ cat:'Hardware',catLabel:'Hardware',priority:'Low',sla:'2 days',title:'Laptop Performance / Slow',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Task Manager (<kbd>Ctrl+Shift+Esc</kbd>) → CPU/Memory tab → identify heavy processes</li>
+<li>Full restart (not sleep) to clear memory leaks</li>
+<li>Free disk space — keep at least 15% free. Delete Downloads + empty Recycle Bin</li>
+<li>Disable startup apps: Task Manager → Startup tab</li>
+<li>Run disk cleanup: <kbd>Win+R</kbd> → <kbd>cleanmgr</kbd> → select all → OK</li>
+<li>Check Windows Update — pending updates cause background CPU load</li></ul>
+<div class="note-l1">✅ L1 — If laptop is 4+ years old, IT will assess for hardware refresh.</div>`}},
+
+{level:'L1',test:t=>/teams|zoom|video call|microsoft teams|audio.*call|mic.*not|camera.*not|webex|google.*meet/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'Medium',sla:'4 hrs',title:'Teams / Video Conferencing',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Sign out of Teams → sign back in with work account</li>
+<li>Clear Teams cache: close Teams → <kbd>%appdata%\\Microsoft\\Teams</kbd> → delete contents → reopen</li>
+<li>Settings → Devices — select correct mic, speaker, camera</li>
+<li>Windows: Settings → Privacy → Camera → enable for Teams</li>
+<li>Try Teams Web: <kbd>teams.microsoft.com</kbd> — if web works, reinstall app</li></ul>
+<div class="note-l1">✅ L1 — Cache clear resolves 70% of Teams audio/video issues.</div>`}},
+
+{level:'L1',test:t=>/mfa|2fa|authenticator|otp.*not|okta.*push|duo.*push|multi.*factor|verification code/i.test(t),
+ cat:'Security',catLabel:'Security',priority:'High',sla:'4 hrs',title:'MFA / 2FA Issue',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Ensure phone clock is synced: phone Settings → Date & Time → <strong>Automatic</strong></li>
+<li>Microsoft Authenticator: tap account → refresh codes (totp codes change every 30s)</li>
+<li>Okta Verify: reopen app, wait for push notification (check internet on phone)</li>
+<li>Not receiving push? Use <strong>"Enter code manually"</strong> option in Okta</li>
+<li>Re-enroll authenticator: go to <kbd>myaccount.microsoft.com</kbd> → Security → Add method</li>
+<li>Backup option: use SMS OTP if registered — call IT to re-register device if lost</li></ul>
+<div class="note-l1">✅ L1 — Time sync fix resolves 60% of TOTP failures instantly.</div>`}},
+
+{level:'L1',test:t=>/browser|chrome.*not|edge.*not|internet explorer|firefox.*crash|webpage.*not|ssl error.*browser|certificate.*browser/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'Low',sla:'8 hrs',title:'Browser / Web Access Issue',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Clear browser cache: <kbd>Ctrl+Shift+Delete</kbd> → All time → Clear all</li>
+<li>Try Incognito/Private mode (<kbd>Ctrl+Shift+N</kbd>) — if works, extension causing issue</li>
+<li>Disable all extensions: Settings → Extensions → disable all, test, re-enable one-by-one</li>
+<li>Reset browser: Settings → Reset and clean up → Restore settings</li>
+<li>Try different browser (Chrome vs Edge vs Firefox)</li>
+<li>For proxy errors: check Settings → System → Proxy → verify auto-detect is on</li></ul>
+<div class="note-l1">✅ L1 — Cache clear + extension check resolves most browser issues.</div>`}},
+
+{level:'L1',test:t=>/usb|keyboard.*not|mouse.*not|headset.*not|peripheral|monitor.*not detected|second screen/i.test(t),
+ cat:'Hardware',catLabel:'Hardware',priority:'Low',sla:'8 hrs',title:'USB / Peripheral Issue',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Unplug device → wait 10 seconds → plug back in (different USB port)</li>
+<li>Try USB-A port (not hub) — hubs can have power issues</li>
+<li>Device Manager: <kbd>Win+X</kbd> → Device Manager → look for yellow warning icons → Update/reinstall driver</li>
+<li>For dual monitor: right-click desktop → Display Settings → detect screens → set arrangement</li>
+<li>Wireless peripherals: replace batteries, re-pair receiver (press pairing button)</li>
+<li>Test device on another PC — confirms if device itself is faulty</li></ul>
+<div class="note-l1">✅ L1 — Faulty hardware will be replaced under IT asset policy.</div>`}},
+
+{level:'L1',test:t=>/software.*install|need.*software|request.*software|download.*app|require.*tool|need.*license/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'Low',sla:'2 days',title:'Software Installation Request',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Check <strong>IT Software Portal</strong>: <kbd>it.company.com/software</kbd> — pre-approved apps self-install</li>
+<li>Common tools available immediately: 7-Zip, VLC, Notepad++, Zoom, Acrobat Reader</li>
+<li>Unlisted software: submit <em>Software Access Request</em> with business justification</li>
+<li>Manager approval required — your manager receives email automatically</li>
+<li>Licensed software (Adobe, AutoCAD): procurement approval needed — 3-5 business days</li>
+<li>Once approved, IT pushes install via <strong>SCCM/Intune</strong> — you'll get notification</li></ul>
+<div class="note-l1">✅ L1 — Standard approvals completed within 2 business days.</div>`}},
+
+{level:'L1',test:t=>/new.*join|new.*employee|onboard|setup.*laptop|new.*hire|joining.*today/i.test(t),
+ cat:'Account',catLabel:'Account Mgmt',priority:'Medium',sla:'1 day',title:'New Employee Onboarding',
+ respond(id){return`<strong>Ticket ${id} created.</strong> Welcome! Here's your setup checklist:<ul class="ai-steps">
+<li>AD account created within 4 hours of HR confirmation — creds go to your manager</li>
+<li>Standard package auto-deployed: Office 365, Teams, VPN, Antivirus, ServiceNow</li>
+<li>Connect laptop to <strong>CORP-WIFI</strong> — software pushes overnight</li>
+<li>Complete <strong>IT Security Awareness Training</strong> — link in your welcome email (Day 1 mandatory)</li>
+<li>System-specific access: your manager submits Access Request in IT Portal</li>
+<li>IT Helpdesk: <strong>1800-XXX-XXXX</strong> — mention you're a new joiner for priority</li></ul>
+<div class="note-l1">✅ L1 — Onboarding SLA: full setup within 8 business hours.</div>`}},
+
+{level:'L1',test:t=>/teamviewer|remote.*support|remote.*assist|take.*control.*screen|share.*screen.*it/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'Medium',sla:'4 hrs',title:'Remote Support Session',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Download <strong>TeamViewer QuickSupport</strong>: <kbd>it.company.com/remote</kbd> — no install needed</li>
+<li>Run the downloaded file — note the <strong>9-digit ID and password shown</strong></li>
+<li>Share ID + password with IT Helpdesk only — never share with anyone else</li>
+<li>IT technician connects and you see all actions in real-time</li>
+<li>Stop session anytime: close TeamViewer window</li>
+<li>Session is recorded for audit compliance</li></ul>
+<div class="note-l1">🔐 IT will <strong>NEVER ask for your Windows password</strong> during remote sessions.</div>`}},
+
+{level:'L1',test:t=>/servicenow|snow|create.*ticket|raise.*ticket|itsm.*portal|helpdesk.*portal/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'Low',sla:'1 day',title:'ServiceNow / ITSM Portal',
+ respond(id){return`<strong>Ticket ${id} created.</strong><ul class="ai-steps">
+<li>Access ServiceNow: <kbd>company.service-now.com</kbd> — login with AD credentials</li>
+<li>New incident: Self Service → <strong>Raise Incident</strong></li>
+<li>Track tickets: My Tickets → filter by status</li>
+<li>Approvals: My Approvals on homepage</li>
+<li>Change requests: Change → Create New (requires manager approval)</li></ul>
+<div class="note-l1">✅ L1 — ServiceNow training: <kbd>it.company.com/training</kbd></div>`}},
+
+// ─────────── L2 · INTERMEDIATE ───────────
+
+{level:'L2',test:t=>/rdp|remote desktop|mstsc|cannot.*rdp|remote.*desktop.*fail/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'Medium',sla:'4 hrs',title:'Remote Desktop (RDP)',
+ respond(id){return`<strong>Ticket ${id} created — L2 Technical Support.</strong><ul class="ai-steps">
+<li>Verify you have <strong>RDP permission</strong> on target machine — contact your admin</li>
+<li>Check target PC is powered on and connected to network</li>
+<li>Ensure <strong>Remote Desktop is enabled</strong> on target: Control Panel → System → Remote Settings → Allow RDP</li>
+<li>Firewall: target PC must allow port <kbd>3389</kbd> — IT admin needs to open this</li>
+<li>Try using <strong>IP address</strong> instead of hostname in RDP client</li>
+<li>From outside office: must connect via VPN first, then RDP</li></ul>
+<div class="note-l2">⚙️ L2 — If RDP blocked by GPO or firewall rule, L2 Network team will adjust.</div>`}},
+
+{level:'L2',test:t=>/citrix|vdi|virtual desktop|vmware horizon|workspace.*login|xenapp|xen.*desktop/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'High',sla:'4 hrs',title:'VDI / Citrix Workspace',
+ respond(id){return`<strong>Ticket ${id} created — L2 Virtual Desktop Support.</strong><ul class="ai-steps">
+<li>Clear Citrix cache: close Workspace → <kbd>%localappdata%\\Citrix\\Receiver</kbd> → delete Cache folder</li>
+<li>Reinstall Citrix Workspace from <kbd>it.company.com/citrix</kbd></li>
+<li>Try <strong>Citrix Web Client</strong>: open browser → <kbd>citrix.company.com</kbd> → use HTML5 client</li>
+<li>Check if VDI server is in maintenance — IT will post status at <kbd>it.company.com/status</kbd></li>
+<li>Profile issue: IT can reset your VDI profile (you'll lose saved settings but regain access)</li>
+<li>Screen freeze: log off from web portal → force session reset</li></ul>
+<div class="note-l2">⚙️ L2 — Persistent VDI issues require L2 Virtualization team to check session host health.</div>`}},
+
+{level:'L2',test:t=>/sap.*not|sap.*login|sap.*error|cannot.*open.*sap|sap.*crash|sapgui/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'High',sla:'4 hrs',title:'SAP Login / Access Issue',
+ respond(id){return`<strong>Ticket ${id} created — L2 SAP Support.</strong><ul class="ai-steps">
+<li>Check SAP system status at <kbd>it.company.com/status</kbd> — may be scheduled maintenance</li>
+<li>Delete SAP GUI cache: SAP Logon → right-click system → Properties → clear stored credentials</li>
+<li>Re-enter SAP system connection string (IP / system ID / instance number)</li>
+<li>Reinstall SAP GUI from Software Portal if corrupted</li>
+<li>For "No authorization" error: your SAP role/authorization may have expired — submit Access Request</li>
+<li>For ABAP dump errors: note the dump code and provide to SAP L3 Basis team</li></ul>
+<div class="note-l2">⚙️ L2 — SAP authorization issues require SAP Basis team involvement.</div>`}},
+
+{level:'L2',test:t=>/sharepoint|share.*point|cannot.*access.*sharepoint|teams.*files|onedrive.*sync/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'Medium',sla:'8 hrs',title:'SharePoint / OneDrive Issue',
+ respond(id){return`<strong>Ticket ${id} created — L2 M365 Support.</strong><ul class="ai-steps">
+<li>Confirm you're logged in with <strong>correct work account</strong> in browser</li>
+<li>Clear SharePoint credentials: Credential Manager → Windows Credentials → remove SharePoint entries</li>
+<li>For "Access Denied": ask site owner to re-share with your account directly</li>
+<li>OneDrive not syncing: right-click OneDrive tray icon → Pause Sync → Resume → check errors</li>
+<li>Reset OneDrive: close → <kbd>Win+R</kbd> → <kbd>%localappdata%\Microsoft\OneDrive\onedrive.exe /reset</kbd></li>
+<li>Check storage quota: OneDrive web → Settings → Storage</li></ul>
+<div class="note-l2">⚙️ L2 — M365 admin can restore deleted SharePoint files up to 93 days.</div>`}},
+
+{level:'L2',test:t=>/group policy|gpo|policy.*error|software.*not applying|intune|mdm.*enroll|device.*register/i.test(t),
+ cat:'Account',catLabel:'Account Mgmt',priority:'Medium',sla:'8 hrs',title:'Group Policy / Intune MDM',
+ respond(id){return`<strong>Ticket ${id} created — L2 Active Directory / MDM Support.</strong><ul class="ai-steps">
+<li>Force GPO refresh: open Admin CMD → <kbd>gpupdate /force</kbd> → restart PC</li>
+<li>Check GPO application: CMD → <kbd>gpresult /h gpo_report.html</kbd> → open file to see applied policies</li>
+<li>For Intune enrollment: Settings → Accounts → Access Work/School → Connect → enter work email</li>
+<li>Device compliance: <kbd>portal.azure.com</kbd> → Intune → check device compliance status</li>
+<li>Disenroll + re-enroll Intune if compliance fails repeatedly</li>
+<li>L2 AD admin needed for: OU misplacement, policy conflicts, blocked loopback policies</li></ul>
+<div class="note-l2">⚙️ L2 — GPO/Intune conflicts require AD admin access to resolve.</div>`}},
+
+{level:'L2',test:t=>/ssl.*expired|certificate.*error|certificate.*expired|trust.*certificate|https.*warning|cert.*invalid/i.test(t),
+ cat:'Security',catLabel:'Security',priority:'High',sla:'4 hrs',title:'SSL Certificate Error',
+ respond(id){return`<strong>Ticket ${id} created — L2 Security / Web Admin.</strong><ul class="ai-steps">
+<li>Capture exact URL and certificate details (click lock icon → Certificate)</li>
+<li>Note: <strong>Expiry date, Issued To, Issued By</strong></li>
+<li>Do <strong>NOT</strong> proceed past browser security warning on internal sites</li>
+<li>Check if certificate expired in the last 24 hours — common cause of sudden failures</li>
+<li>Internal CA cert missing? IT Security team will push root CA via GPO</li>
+<li>For internal web app: escalate to Web/App team — certificate renewal in PKI system needed</li></ul>
+<div class="note-l2">⚙️ L2/L3 — Certificate renewal requires PKI/Security team and may affect multiple users.</div>`}},
+
+{level:'L2',test:t=>/backup.*fail|restore.*file|recover.*file|deleted.*file|data recovery|backup.*job/i.test(t),
+ cat:'Software',catLabel:'Software',priority:'High',sla:'4 hrs',title:'Backup / File Recovery',
+ respond(id){return`<strong>Ticket ${id} created — L2 Data Recovery.</strong><ul class="ai-steps">
+<li>Check <strong>Recycle Bin</strong> first — files deleted from local drives often recoverable</li>
+<li>For network drives: right-click folder → <em>Restore previous versions</em> (Shadow Copy)</li>
+<li>OneDrive: web portal → Recycle Bin → items retained 93 days</li>
+<li>SharePoint: Site Settings → Recycle Bin — Stage 1 (30 days) and Stage 2 (90 days)</li>
+<li>Check if file moved accidentally using Windows Search</li>
+<li>If none above: IT L2 will check Veeam/Backup Exec backup job for last successful restore point</li></ul>
+<div class="note-l2">⚙️ L2 — Backup restores for server/network drives require L2 Storage team. Provide exact file path and date last known good.</div>`}},
+
+{level:'L2',test:t=>/proxy|pac file|internet filter|websense|mcafee web|bluecoat|zscaler|website.*blocked/i.test(t),
+ cat:'Network',catLabel:'Network',priority:'Medium',sla:'8 hrs',title:'Web Proxy / URL Filtering',
+ respond(id){return`<strong>Ticket ${id} created — L2 Network / Security.</strong><ul class="ai-steps">
+<li>Note exact URL and error message shown (blocked/filtered/access denied)</li>
+<li>Check if site blocked by category: IT uses <strong>Zscaler / Bluecoat</strong> for content filtering</li>
+<li>Submit <em>URL Whitelist Request</em> in IT Portal with business justification</li>
+<li>Manager approval required for whitelist exceptions</li>
+<li>Browser proxy setting: Settings → System → Proxy → ensure "Auto-detect" is on</li>
+<li>PAC file issues: IT Network team will push corrected proxy.pac via GPO</li></ul>
+<div class="note-l2">⚙️ L2 — Proxy/firewall rule changes require Network Security team approval.</div>`}},
+
+{level:'L2',test:t=>/distribution list|dl.*not|email group|cannot.*add.*group|mailbox.*permission|shared mailbox/i.test(t),
+ cat:'Account',catLabel:'Account Mgmt',priority:'Low',sla:'1 day',title:'Distribution List / Shared Mailbox',
+ respond(id){return`<strong>Ticket ${id} created — L2 Exchange / M365 Admin.</strong><ul class="ai-steps">
+<li>For DL membership: your manager or DL owner submits request in IT Portal</li>
+<li>Shared mailbox access: IT Exchange admin grants <em>Full Access</em> or <em>Send As</em> permission</li>
+<li>After permission granted: Outlook → File → Add Account → enter shared mailbox address</li>
+<li>New DL creation: submit form with owner, members, email address, moderation preference</li>
+<li>DL changes take up to 30 minutes to replicate globally across Exchange</li>
+<li>Dynamic DL: auto-populated from AD attributes — contact AD team to update attributes</li></ul>
+<div class="note-l2">⚙️ L2 — Exchange admin access required for DL/mailbox permission changes.</div>`}},
+
+{level:'L2',test:t=>/mobile.*setup|iphone.*work|android.*work|enroll.*device|work.*phone|mobile device management/i.test(t),
+ cat:'Hardware',catLabel:'Hardware',priority:'Medium',sla:'1 day',title:'Mobile Device Setup / MDM',
+ respond(id){return`<strong>Ticket ${id} created — L2 Mobile Device Management.</strong><ul class="ai-steps">
+<li>Company supports: <strong>iOS 15+</strong> and <strong>Android 10+</strong> for MDM enrollment</li>
+<li>Install <strong>Microsoft Intune Company Portal</strong> app from App Store / Play Store</li>
+<li>Open Company Portal → Sign in with work email → follow enrollment steps</li>
+<li>Device will receive company email, WiFi profile, and security policies automatically</li>
+<li>Work profile (Android): personal apps and work apps remain separate</li>
+<li>If enrollment fails: IT MDM team will provide manual enrollment profile</li></ul>
+<div class="note-l2">⚙️ L2 — MDM enrollment issues require L2 Mobile team to check Intune console for errors.</div>`}},
+
+// ─────────── L3 · EXPERT ───────────
+
+{level:'L3',test:t=>/server.*down|server.*not respond|server.*unreachable|production.*down|app.*server.*fail|web server.*down/i.test(t),
+ cat:'Infrastructure',catLabel:'Infrastructure',priority:'Critical',sla:'30 mins',title:'Server Down / Outage',
+ respond(id){return`<div class="escalate">🚨 AUTO-ESCALATED TO L3 INFRASTRUCTURE TEAM</div>
+<strong>CRITICAL — Ticket ${id} created.</strong> Immediate actions:<ul class="ai-steps">
+<li><strong>DO NOT reboot</strong> without L3 approval — may cause data corruption</li>
+<li>Call <strong>L3 On-Call Hotline: 1800-XXX-XXXX Ext. 911</strong> immediately</li>
+<li>Collect: server name/IP, error messages, time of failure, services affected</li>
+<li>Check monitoring dashboard: <kbd>nagios.company.com</kbd> / <kbd>grafana.company.com</kbd></li>
+<li>Notify stakeholders and create bridge call: <strong>teams.microsoft.com/bridge/INCIDENT</strong></li>
+<li>Incident Commander assigns L3 SMEs: OS, App, Database, Network as needed</li></ul>
+<div class="note-l3">🚨 L3 — P1 Incident. RTO: 30 mins. War room activated. Vendor escalation if needed.</div>`}},
+
+{level:'L3',test:t=>/database.*down|db.*not respond|sql.*down|oracle.*fail|mysql.*error|database.*connect|db.*timeout|deadlock/i.test(t),
+ cat:'Infrastructure',catLabel:'Infrastructure',priority:'Critical',sla:'30 mins',title:'Database Failure',
+ respond(id){return`<div class="escalate">🚨 AUTO-ESCALATED TO L3 DATABASE TEAM (DBA)</div>
+<strong>CRITICAL — Ticket ${id} raised.</strong><ul class="ai-steps">
+<li>Call DBA On-Call immediately: <strong>1800-XXX-XXXX Ext. 912</strong></li>
+<li>DO NOT restart database service without DBA authorization</li>
+<li>Capture: error code, transaction logs, last successful query time</li>
+<li>Check alert logs: <kbd>/oracle/diag/rdbms/</kbd> (Oracle) or SQL Server Event Log</li>
+<li>Check disk space on DB server — full disk causes sudden DB failure</li>
+<li>Identify if blocking query/deadlock: DBA will run <kbd>sp_who2</kbd> / AWR report</li></ul>
+<div class="note-l3">🚨 L3 — DBA team has 15-min response SLA for P1 DB outages. Failover to DR DB if RTO exceeded.</div>`}},
+
+{level:'L3',test:t=>/network.*outage|site.*down|complete.*outage|building.*no.*network|campus.*outage|wan.*down/i.test(t),
+ cat:'Network',catLabel:'Network',priority:'Critical',sla:'30 mins',title:'Site-Wide Network Outage',
+ respond(id){return`<div class="escalate">🚨 AUTO-ESCALATED TO L3 NETWORK OPERATIONS CENTER (NOC)</div>
+<strong>CRITICAL — Ticket ${id} raised.</strong><ul class="ai-steps">
+<li>Call NOC immediately: <strong>1800-XXX-XXXX Ext. 100</strong></li>
+<li>Confirm scope: how many users affected, which floors/buildings</li>
+<li>Check if core switch/router is up: ping gateway from unaffected location</li>
+<li>NOC checks: ISP uptime, core router BGP status, SD-WAN failover</li>
+<li>Activate emergency 4G/LTE backup if available for critical operations</li>
+<li>Site manager to contact ISP directly with reference: circuit ID on NOC record</li></ul>
+<div class="note-l3">🚨 L3 — NOC activates failover link within 15 mins. ISP escalation within 30 mins. War room opened.</div>`}},
+
+{level:'L3',test:t=>/ransomware|malware.*spread|virus.*network|files.*encrypted|hack.*alert|breach|security incident|phish.*click/i.test(t),
+ cat:'Security',catLabel:'Security',priority:'Critical',sla:'15 mins',title:'Security Incident / Breach',
+ respond(id){return`<div class="escalate">🚨 CRITICAL SECURITY INCIDENT — CSIRT ACTIVATED</div>
+<strong>EMERGENCY — Ticket ${id} raised with P0 severity.</strong><ul class="ai-steps">
+<li><strong>IMMEDIATELY disconnect affected systems from network</strong> — unplug LAN, disable WiFi</li>
+<li>Do NOT power off — forensic memory capture needed</li>
+<li>Call CISO / Security Hotline: <strong>1800-XXX-XXXX Ext. 000</strong></li>
+<li>Isolate affected segment: IT will block switch port at network level</li>
+<li>Preserve evidence: screenshots, logs, suspicious files — do NOT delete</li>
+<li>CSIRT conducts: containment → eradication → recovery → post-incident review</li></ul>
+<div class="note-l3">🚨 P0 — Legal, Compliance, Management notified. Vendor SOC engaged. Possible regulatory reporting (GDPR/RBI).</div>`}},
+
+{level:'L3',test:t=>/ad.*replication|domain controller.*fail|active directory.*down|ldap.*fail|kerberos.*error/i.test(t),
+ cat:'Infrastructure',catLabel:'Infrastructure',priority:'Critical',sla:'1 hr',title:'AD Replication / DC Failure',
+ respond(id){return`<div class="escalate">🚨 AUTO-ESCALATED TO L3 ACTIVE DIRECTORY TEAM</div>
+<strong>CRITICAL — Ticket ${id} raised.</strong><ul class="ai-steps">
+<li>Call AD L3 team: <strong>1800-XXX-XXXX Ext. 913</strong></li>
+<li>Identify which DC is failing: run <kbd>repadmin /showrepl</kbd> from working DC</li>
+<li>Check DC event log: Windows Logs → System → NTDS errors</li>
+<li>Check replication status: <kbd>repadmin /replsummary</kbd></li>
+<li>Seize FSMO roles if PDC emulator unresponsive: requires AD L3 authorization</li>
+<li>If single DC fails: other DCs continue auth — login failures may increase response time</li></ul>
+<div class="note-l3">🚨 L3 — DC failure impacts authentication for all domain users. P1 priority. AD team has emergency procedures.</div>`}},
+
+{level:'L3',test:t=>/azure.*down|aws.*fail|cloud.*outage|azure.*vm.*not|cloud.*server|kubernetes.*crash|k8s.*down/i.test(t),
+ cat:'Cloud',catLabel:'Cloud',priority:'Critical',sla:'30 mins',title:'Cloud Infrastructure Failure',
+ respond(id){return`<div class="escalate">🚨 AUTO-ESCALATED TO L3 CLOUD OPERATIONS TEAM</div>
+<strong>CRITICAL — Ticket ${id} raised.</strong><ul class="ai-steps">
+<li>Check Azure/AWS Status Page: <kbd>status.azure.com</kbd> / <kbd>status.aws.amazon.com</kbd></li>
+<li>Call Cloud Ops L3: <strong>1800-XXX-XXXX Ext. 914</strong></li>
+<li>Identify: region, resource group, VM/service name, subscription ID</li>
+<li>Check Azure Portal: All Resources → filter by status for degraded services</li>
+<li>For Kubernetes: <kbd>kubectl get nodes</kbd> and <kbd>kubectl get pods --all-namespaces</kbd></li>
+<li>Activate DR/failover to secondary region if primary region impacted for 30+ mins</li></ul>
+<div class="note-l3">🚨 L3 — Cloud vendor support case opened simultaneously. TAM engaged for critical accounts.</div>`}},
+
+{level:'L3',test:t=>/storage.*fail|san.*down|nas.*not|disk.*array|vsan.*error|storage.*pool|io.*error.*storage/i.test(t),
+ cat:'Infrastructure',catLabel:'Infrastructure',priority:'Critical',sla:'30 mins',title:'SAN / NAS Storage Failure',
+ respond(id){return`<div class="escalate">🚨 AUTO-ESCALATED TO L3 STORAGE TEAM</div>
+<strong>CRITICAL — Ticket ${id} raised.</strong><ul class="ai-steps">
+<li>Call Storage L3 on-call: <strong>1800-XXX-XXXX Ext. 915</strong></li>
+<li>Identify: affected LUNs, storage array name, controller status</li>
+<li>Check storage management console: NetApp ONTAP / Pure Storage / EMC Unisphere</li>
+<li>Do NOT format or modify volumes without L3 authorization</li>
+<li>Check if RAID rebuild in progress — high I/O is normal during rebuild</li>
+<li>If drive failure: vendor (NetApp/EMC/HPE) opens HW replacement request immediately</li></ul>
+<div class="note-l3">🚨 L3 — Storage vendor emergency support engaged within 1 hour for P1. Spare drive dispatch initiated.</div>`}},
+
+{level:'L3',test:t=>/firewall.*block|palo alto|cisco asa|fortinet|firewall.*rule|acl.*issue|port.*blocked.*firewall/i.test(t),
+ cat:'Security',catLabel:'Security',priority:'High',sla:'2 hrs',title:'Firewall / Network ACL Issue',
+ respond(id){return`<div class="escalate">⚙️ ESCALATED TO L3 NETWORK SECURITY TEAM</div>
+<strong>Ticket ${id} raised — L3 Firewall Support.</strong><ul class="ai-steps">
+<li>Provide: source IP, destination IP/URL, port number, protocol (TCP/UDP)</li>
+<li>Check if traffic is being dropped: <kbd>traceroute</kbd> and <kbd>telnet {IP} {port}</kbd></li>
+<li>Submit <em>Firewall Rule Change Request</em> in IT Portal — requires CISO approval</li>
+<li>L3 Network Security checks Palo Alto / ASA logs for deny rule</li>
+<li>Rule changes tested in staging firewall first before production</li>
+<li>Emergency port open (for incidents): CISO verbal + email approval within 15 mins</li></ul>
+<div class="note-l3">⚙️ L3 — All firewall changes logged and reviewed in weekly CAB meeting. Unauthorized rule changes raise P1 security alert.</div>`}},
+
+{level:'L3',test:t=>/dns.*fail|dns.*not resolv|cannot.*resolve|name resolution|nslookup.*fail|dns.*server.*not/i.test(t),
+ cat:'Network',catLabel:'Network',priority:'High',sla:'1 hr',title:'DNS Resolution Failure',
+ respond(id){return`<div class="escalate">⚙️ ESCALATED TO L3 NETWORK / DNS TEAM</div>
+<strong>Ticket ${id} raised — L3 DNS Support.</strong><ul class="ai-steps">
+<li>Basic check: <kbd>nslookup company.com {DNS_server_IP}</kbd> — tests DNS directly</li>
+<li>Flush DNS: Admin CMD → <kbd>ipconfig /flushdns</kbd> then retry</li>
+<li>Check DNS server IP: CMD → <kbd>ipconfig /all</kbd> — verify correct DNS servers listed</li>
+<li>Try alternate DNS temporarily: use <kbd>8.8.8.8</kbd> (Google) to isolate internal vs internet DNS</li>
+<li>If internal DNS failing: L3 checks Windows DNS server service, zone files, replication</li>
+<li>DNS poisoning suspected? L3 Security team notified immediately</li></ul>
+<div class="note-l3">⚙️ L3 — Internal DNS server failure escalated to AD/Network team. Split-brain DNS requires L3 expertise.</div>`}},
+
+{level:'L3',test:t=>/disaster recovery|dr.*activate|failover.*site|dr.*drill|business continuity|bcp.*activate/i.test(t),
+ cat:'Infrastructure',catLabel:'Infrastructure',priority:'Critical',sla:'15 mins',title:'Disaster Recovery Activation',
+ respond(id){return`<div class="escalate">🚨 DR ACTIVATION — CRISIS MANAGEMENT TEAM NOTIFIED</div>
+<strong>CRITICAL — Ticket ${id} raised.</strong><ul class="ai-steps">
+<li>Declare disaster: <strong>CTO / CIO authorization required</strong> before DR activation</li>
+<li>Call Crisis Management Hotline: <strong>1800-XXX-XXXX Ext. 911</strong></li>
+<li>DR Runbook location: <kbd>sharepoint.company.com/DR-Runbooks</kbd></li>
+<li>Activate DR site: infrastructure team executes failover (Veeam / Zerto / Site Recovery)</li>
+<li>DNS cutover to DR site: NOC updates DNS records, ~15 min TTL propagation</li>
+<li>Communication: IT sends status to all staff. Business Continuity Manager notified</li></ul>
+<div class="note-l3">🚨 P0 — DR test every quarter. Last tested: Q3 2026. RTO: 4 hrs, RPO: 1 hr for critical systems.</div>`}},
+
+// Fallback
+{level:'L1',test:()=>true,
+ cat:'General',catLabel:'General IT',priority:'Medium',sla:'8 hrs',title:'General IT Support',
+ respond(id){return`<strong>Ticket ${id} created.</strong> Your request has been logged.<ul class="ai-steps">
+<li>Ticket assigned to IT Helpdesk — response within 8 business hours</li>
+<li>You'll receive email updates at each stage</li>
+<li>Urgent? Call: <strong>1800-XXX-XXXX</strong> (24×7 support)</li>
+<li>Track ticket status: <kbd>it.company.com/mytickets</kbd></li></ul>
+<div class="note-l1">💡 Tip: Use keywords like "VPN", "password", "server down", "Citrix", "SAP" for instant AI-guided resolution.</div>`}}
 ];
 
-// Priority badge class map
-const pbMap = { Critical: 'pb-crit', High: 'pb-high', Medium: 'pb-med', Low: 'pb-low' };
-
-// ── Core functions ──────────────────────────────────────────────
-
+// ── Core Logic ─────────────────────────────────────────────────
 function send() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
+  const inp = document.getElementById('chatInput');
+  const text = inp.value.trim();
   if (!text || busy) return;
   busy = true;
   document.getElementById('sendBtn').disabled = true;
-  input.value = '';
-  input.style.height = 'auto';
-
-  appendUserMsg(text);
+  inp.value = ''; inp.style.height = 'auto';
+  appendUser(text);
   showTyping();
-
+  const delay = 1200 + Math.random() * 800;
   setTimeout(() => {
     removeTyping();
-    const match = KB.find(k => k.test(text));
-    const tkt = newTktId();
-    openCount++;
-    updateKPIs();
-    appendAIMsg(match, tkt);
-    addToSidebar(match, tkt);
+    const m = KB.find(k => k.test(text));
+    const id = newId();
+    openCount(m.level);
+    appendAI(m, id);
+    addSidebar(m, id);
     busy = false;
     document.getElementById('sendBtn').disabled = false;
-  }, 1400 + Math.random() * 600);
+  }, delay);
 }
 
-function appendUserMsg(text) {
+let _open = 5;
+function openCount(level) {
+  _open++;
+  document.getElementById('kOpen').textContent = _open;
+  if (level === 'L1') { openL1++; document.getElementById('kL1').textContent = openL1; }
+  if (level === 'L2') { openL2++; document.getElementById('kL2').textContent = openL2; }
+  if (level === 'L3') { openL3++; document.getElementById('kL3').textContent = openL3; }
+  if (Math.random() > .5) { resolved++; document.getElementById('kResolved').textContent = resolved; }
+}
+
+function appendUser(text) {
   const msgs = document.getElementById('messages');
   const el = document.createElement('div');
   el.className = 'msg user';
-  el.innerHTML = `
-    <div class="m-av">👤</div>
-    <div class="m-body">
-      <div class="bubble">${escHtml(text)}</div>
-      <div class="m-time">${now()}</div>
-    </div>`;
-  msgs.appendChild(el);
-  scrollChat();
+  el.innerHTML = `<div class="m-av">👤</div><div class="m-body"><div class="bubble">${esc(text)}</div><div class="m-time">${now()}</div></div>`;
+  msgs.appendChild(el); scroll();
 }
 
-function appendAIMsg(match, tkt) {
+function appendAI(m, id) {
   const msgs = document.getElementById('messages');
   const el = document.createElement('div');
   el.className = 'msg ai';
   el.innerHTML = `
-    <div class="m-av">🤖</div>
+    <div class="m-av" style="background:linear-gradient(135deg,#4F46E5,#7C3AED)">🤖</div>
     <div class="m-body">
       <div class="bubble">
-        ${match.respond(tkt)}
+        ${m.respond(id)}
         <div class="tkt-card">
-          <span class="tc-id">${tkt}</span>
-          <span class="pb ${pbMap[match.priority] || 'pb-med'}">${match.priority}</span>
-          <span class="cb cb-${match.cat}">${match.catLabel}</span>
-          <span class="sla-txt">SLA: ${match.sla}</span>
+          <span class="tc-id">${id}</span>
+          <span class="lv lv-${m.level}">${m.level}</span>
+          <span class="pb ${pbMap[m.priority]||'pb-med'}">${m.priority}</span>
+          <span class="cb cb-${m.cat}">${m.catLabel}</span>
+          <span class="sla-t">SLA: ${m.sla}</span>
         </div>
       </div>
       <div class="m-time">${now()}</div>
     </div>`;
-  msgs.appendChild(el);
-  scrollChat();
+  msgs.appendChild(el); scroll();
 }
 
 function showTyping() {
   const msgs = document.getElementById('messages');
   const el = document.createElement('div');
-  el.className = 'typing-wrap';
-  el.id = 'typing';
-  el.innerHTML = `
-    <div class="m-av" style="background:linear-gradient(135deg,#4F46E5,#7C3AED);width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🤖</div>
-    <div class="dots"><span></span><span></span><span></span></div>`;
-  msgs.appendChild(el);
-  scrollChat();
+  el.className = 'typing-wrap'; el.id = 'typing';
+  el.innerHTML = `<div class="m-av" style="width:27px;height:27px;background:linear-gradient(135deg,#4F46E5,#7C3AED);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0">🤖</div><div class="dots"><span></span><span></span><span></span></div>`;
+  msgs.appendChild(el); scroll();
 }
-
-function removeTyping() {
-  const t = document.getElementById('typing');
-  if (t) t.remove();
-}
-
-function addToSidebar(match, tkt) {
+function removeTyping() { const t=document.getElementById('typing'); if(t) t.remove(); }
+function addSidebar(m, id) {
   const list = document.getElementById('ticketList');
   const el = document.createElement('div');
-  el.className = 't-item';
-  el.onclick = () => selectTicket(el);
-  el.innerHTML = `
-    <div class="t-top">
-      <span class="t-id">${tkt}</span>
-      <span class="pb ${pbMap[match.priority] || 'pb-med'}">${match.priority}</span>
-    </div>
-    <div class="t-title">${match.title}</div>
-    <div class="t-meta">
-      <span class="cb cb-${match.cat}">${match.catLabel}</span>
-      <span style="font-size:10px;color:var(--fg-3)">${now()}</span>
-    </div>`;
+  el.className = 't-item'; el.onclick = () => selectTicket(el);
+  el.innerHTML = `<div class="t-top"><span class="t-id">${id}</span><span class="lv lv-${m.level}">${m.level}</span><span class="pb ${pbMap[m.priority]||'pb-med'}">${m.priority}</span></div><div class="t-title">${m.title}</div><div class="t-meta"><span class="cb cb-${m.cat}">${m.catLabel}</span><span style="font-size:10px;color:var(--fg-3)">${now()}</span></div>`;
   list.insertBefore(el, list.firstChild);
 }
-
-function selectTicket(el) {
-  document.querySelectorAll('.t-item').forEach(x => x.classList.remove('active'));
-  el.classList.add('active');
-}
-
-function updateKPIs() {
-  document.getElementById('kOpen').textContent = openCount;
-  // Simulate resolved going up slowly
-  if (Math.random() > 0.6) {
-    resolvedCount++;
-    document.getElementById('kResolved').textContent = resolvedCount;
-  }
-}
-
-function scrollChat() {
-  const msgs = document.getElementById('messages');
-  msgs.scrollTop = msgs.scrollHeight;
-}
-
-function escHtml(t) {
-  return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-function handleKey(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
-}
-
-function autoResize(el) {
-  el.style.height = 'auto';
-  el.style.height = Math.min(el.scrollHeight, 110) + 'px';
-}
-
-function sendChip(el) {
-  const text = el.textContent.replace(/^[^\w]+/, '').trim();
-  document.getElementById('chatInput').value = text;
-  send();
-}
-
-// ── Theme toggle ───────────────────────────────────────────────
+function selectTicket(el) { document.querySelectorAll('.t-item').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
+function scroll() { const m=document.getElementById('messages'); m.scrollTop=m.scrollHeight; }
+function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} }
+function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,100)+'px'; }
+function sendChip(el) { document.getElementById('chatInput').value=el.textContent.replace(/L[123]/,'').trim(); send(); }
 function toggleTheme() {
-  const root = document.documentElement;
-  const cur = root.getAttribute('data-theme');
-  root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
-  try { localStorage.setItem('theme', root.getAttribute('data-theme')); } catch(e) {}
+  const r=document.documentElement;
+  r.setAttribute('data-theme',r.getAttribute('data-theme')==='dark'?'light':'dark');
+  try{localStorage.setItem('theme',r.getAttribute('data-theme'));}catch(e){}
 }
-
-try {
-  const saved = localStorage.getItem('theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
-} catch(e) {}
+try{const s=localStorage.getItem('theme');if(s)document.documentElement.setAttribute('data-theme',s);}catch(e){}
 </script>
 </body>
 </html>
