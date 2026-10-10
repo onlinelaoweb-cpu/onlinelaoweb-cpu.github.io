@@ -856,7 +856,6 @@ function addSidebar(m, id) {
 }
 function selectTicket(el) { document.querySelectorAll('.t-item').forEach(x=>x.classList.remove('active')); el.classList.add('active'); }
 function scroll() { const m=document.getElementById('messages'); m.scrollTop=m.scrollHeight; }
-function esc(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();} }
 function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,100)+'px'; }
 function sendChip(el) { document.getElementById('chatInput').value=el.textContent.replace(/L[123]/,'').trim(); send(); }
